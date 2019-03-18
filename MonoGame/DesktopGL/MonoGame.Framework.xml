@@ -15477,18 +15477,20 @@
             <param name="sampleRate">Sample rate, in Hertz (Hz).</param>
             <param name="channels">Number of channels (mono or stereo).</param>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32)">
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32,System.Int32)">
             <summary>
             Returns the duration of an audio buffer of the specified size, based on the settings of this instance.
             </summary>
-            <param name="sizeInBytes">Size of the buffer, in bytes.</param>
+            <param name="sampleCount">The amount of samples.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
             <returns>The playback length of the buffer.</returns>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan)">
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan,System.Int32)">
             <summary>
             Returns the size, in bytes, of a buffer of the specified duration, based on the settings of this instance.
             </summary>
             <param name="duration">The playback length of the buffer.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
             <returns>The data size of the buffer, in bytes.</returns>
         </member>
         <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play">
@@ -15542,6 +15544,15 @@
             </remarks>
             <param name="buffer">The buffer containing PCM audio data.</param>
         </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Single[])">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+        </member>
         <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)">
             <summary>
             Queues an audio buffer for playback.
@@ -15554,6 +15565,17 @@
             <param name="count">The amount of elements to use.</param>
         </member>
         <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Int16[],System.Int32,System.Int32)">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+            <param name="offset">The starting position of audio data.</param>
+            <param name="count">The amount of elements to use.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Single[],System.Int32,System.Int32)">
             <summary>
             Queues an audio buffer for playback.
             </summary>
@@ -15704,21 +15726,23 @@
             </list>
             </remarks>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
             <summary>
-            Returns the duration for 16-bit PCM audio.
+            Returns the duration for PCM audio.
             </summary>
-            <param name="sizeInBytes">The length of the audio data in bytes.</param>
-            <param name="sampleRate">Sample rate, in Hertz (Hz). Must be between 8000 Hz and 48000 Hz</param>
+            <param name="sampleCount">The amount of samples.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
+            <param name="sampleRate">Sample rate in hertz (Hz). Must be between 8000 Hz and 48000 Hz</param>
             <param name="channels">Number of channels in the audio data.</param>
             <returns>The duration of the audio data.</returns>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
             <summary>
-            Returns the data size in bytes for 16bit PCM audio.
+            Returns the data size in bytes for PCM audio.
             </summary>
             <param name="duration">The total duration of the audio data.</param>
-            <param name="sampleRate">Sample rate, in Hertz (Hz), of audio data. Must be between 8,000 and 48,000 Hz.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
+            <param name="sampleRate">Sample rate in hertz (Hz), of audio data. Must be between 8,000 and 48,000 Hz.</param>
             <param name="channels">Number of channels in the audio data.</param>
             <returns>The size in bytes of a single sample of audio data.</returns>
         </member>
