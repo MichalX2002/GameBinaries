@@ -4,6 +4,1058 @@
         <name>MonoGame.Framework</name>
     </assembly>
     <members>
+        <member name="T:Microsoft.Xna.Framework.Audio.AudioChannels">
+            <summary>
+            Represents how many channels are used in the audio data.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.AudioChannels.Mono">
+            <summary>Single channel.</summary> 
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.AudioChannels.Stereo">
+            <summary>Two channels.</summary> 
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.AudioEmitter">
+            <summary>
+            Represents a 3D audio emitter. Used to simulate 3D audio effects.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor">
+            <summary>Initializes a new AudioEmitter instance.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.DopplerScale">
+            <summary>Gets or sets a scale applied to the Doppler effect between the AudioEmitter and an AudioListener.</summary>
+            <remarks>
+            <para>Defaults to 1.0</para>
+            <para>A value of 1.0 leaves the Doppler effect unmodified.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Forward">
+            <summary>Gets or sets the emitter's forward vector.</summary>
+            <remarks>
+            <para>Defaults to Vector3.Forward. (new Vector3(0, 0, -1))</para>
+            <para>Used with AudioListener.Velocity to calculate Doppler values.</para>
+            <para>The Forward and Up values must be orthonormal.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Position">
+            <summary>Gets or sets the position of this emitter.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Up">
+            <summary>Gets or sets the emitter's Up vector.</summary>
+            <remarks>
+            <para>Defaults to Vector3.Up. (new Vector3(0, -1, 1)).</para>
+            <para>The Up and Forward vectors must be orthonormal.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Velocity">
+            <summary>Gets or sets the emitter's velocity vector.</summary>
+            <remarks>
+            <para>Defaults to Vector3.Zero.</para>
+            <para>This value is only used when calculating Doppler values.</para>
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.AudioListener">
+            <summary>
+            Represents a 3D audio listener. Used when simulating 3D Audio.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Forward">
+            <summary>Gets or sets the listener's forward vector.</summary>
+            <remarks>
+            <para>Defaults to Vector3.Forward. (new Vector3(0, 0, -1))</para>
+            <para>Used with AudioListener.Velocity and AudioEmitter.Velocity to calculate Doppler values.</para>
+            <para>The Forward and Up vectors must be orthonormal.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Position">
+            <summary>Gets or sets the listener's position.</summary>
+            <remarks>
+            Defaults to Vector3.Zero.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Up">
+            <summary>
+            Gets or sets the listener's up vector..
+            </summary>
+            <remarks>
+            <para>Defaults to Vector3.Up (New Vector3(0, -1, 0)).</para>
+            <para>Used with AudioListener.Velocity and AudioEmitter.Velocity to calculate Doppler values.</para>
+            <para>The values of the Forward and Up vectors must be orthonormal.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Velocity">
+            <summary>Gets or sets the listener's velocity vector.</summary>
+            <remarks>
+            <para>Defaults to Vector3.Zero.</para>
+            <para>Scaled by DopplerScale to calculate the Doppler effect value applied to a Cue.</para>
+            <para>This value is only used to calculate Doppler values.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioLoader.Load(System.IO.Stream,Microsoft.Xna.Framework.Audio.ALFormat@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Load a WAV file from stream.
+            </summary>
+            <param name="stream">The stream positioned at the start of the WAV file.</param>
+            <param name="format">Gets the OpenAL format enumeration value.</param>
+            <param name="frequency">Gets the frequency or sample rate.</param>
+            <param name="channels">Gets the number of channels.</param>
+            <param name="blockAlignment">Gets the block alignment, important for compressed sounds.</param>
+            <param name="bitsPerSample">Gets the number of bits per sample.</param>
+            <param name="samplesPerBlock">Gets the number of samples per block.</param>
+            <param name="sampleCount">Gets the total number of samples.</param>
+            <returns>The byte buffer containing the waveform data or compressed blocks.</returns>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
+            <summary>
+            A <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> for which the audio buffer is provided by the game at run time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.IsLooped">
+            <summary>
+            This value has no effect on DynamicSoundEffectInstance.
+            It may not be set.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.PendingBufferCount">
+            <summary>
+            Returns the number of audio buffers queued for playback.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferedSamples">
+            <summary>
+            Returns the number of samples queued for playback.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded">
+            <summary>
+            The event that occurs when the number of queued audio buffers is low.
+            </summary>
+            <remarks>
+            This event may occur when <see cref="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play"/> is called or during playback when a buffer is completed.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.#ctor(System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+            <param name="sampleRate">Sample rate, in Hertz (Hz).</param>
+            <param name="channels">Number of channels (mono or stereo).</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32,System.Int32)">
+            <summary>
+            Returns the duration of an audio buffer of the specified size, based on the settings of this instance.
+            </summary>
+            <param name="sampleCount">The amount of samples.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
+            <returns>The playback length of the buffer.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan,System.Int32)">
+            <summary>
+            Returns the size, in bytes, of a buffer of the specified duration, based on the settings of this instance.
+            </summary>
+            <param name="duration">The playback length of the buffer.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
+            <returns>The data size of the buffer, in bytes.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play">
+            <summary>
+            Plays or resumes the DynamicSoundEffectInstance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Pause">
+            <summary>
+            Pauses playback of the DynamicSoundEffectInstance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Resume">
+            <summary>
+            Resumes playback of the DynamicSoundEffectInstance.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Stop">
+            <summary>
+            Immediately stops playing the DynamicSoundEffectInstance.
+            </summary>
+            <remarks>
+            Calling this also releases all queued buffers.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Stop(System.Boolean)">
+            <summary>
+            Stops playing the DynamicSoundEffectInstance.
+            If the <paramref name="immediate"/> parameter is false, this call has no effect.
+            </summary>
+            <remarks>
+            Calling this also releases all queued buffers.
+            </remarks>
+            <param name="immediate">When set to false, this call has no effect.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[])">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Int16[])">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Single[])">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+            <param name="offset">The starting position of audio data.</param>
+            <param name="count">The amount of elements to use.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Int16[],System.Int32,System.Int32)">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+            <param name="offset">The starting position of audio data.</param>
+            <param name="count">The amount of elements to use.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Queues an audio buffer for playback.
+            </summary>
+            <remarks>
+            The buffer length must conform to alignment requirements for the audio format.
+            </remarks>
+            <param name="buffer">The buffer containing PCM audio data.</param>
+            <param name="offset">The starting position of audio data.</param>
+            <param name="count">The amount of elements to use.</param>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstanceManager">
+            <summary>
+            Handles the buffer events of all DynamicSoundEffectInstance instances.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstanceManager.Update">
+            <summary>
+            Updates buffer queues of the currently playing instances.
+            </summary>
+            <remarks>
+            XNA posts <see cref="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded"/> events always on the main thread.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
+            <summary>
+            The exception thrown when the system attempts to play more SoundEffectInstances than allotted.
+            </summary>
+            <remarks>
+            Most platforms have a hard limit on how many sounds can be played simultaneously. This exception is thrown when that limit is exceeded.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
+            <summary>
+            The exception thrown when no audio hardware is present, or driver issues are detected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String)">
+            <param name="msg">A message describing the error.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String,System.Exception)">
+            <param name="msg">A message describing the error.</param>
+            <param name="innerException">The exception that is the underlying cause of the current exception. If not null, the current exception is raised in a try/catch block that handled the innerException.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.ALController.#ctor">
+            <summary>
+            Sets up the hardware resources used by the controller.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.ALController.Open">
+            <summary>
+            Open the sound device, sets up an audio context, and makes the new context
+            the current context. Note that this method will stop the playback of
+            music that was running prior to the game start. If any error occurs, then
+            the state of the controller is reset.
+            </summary>
+            <returns>True if the sound controller was setup, and false if not.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.ALController.ReserveSource">
+            <summary>
+            Reserves a sound source and return its identifier. If there are no available sources
+            or the controller was not able to setup the hardware then an
+            <see cref="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException"/> is thrown.
+            </summary>
+            <returns>The ID of the reserved sound source.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.ALController.DestroyContexts">
+            <summary>
+            Destroys the AL context and closes the device, when they exist.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.ALController.Dispose">
+            <summary>
+            Dispose of the OpenALSoundCOntroller.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.ALController.Dispose(System.Boolean)">
+            <summary>
+            Dispose of the OpenALSoundCOntroller.
+            </summary>
+            <param name="disposing">If true, the managed resources are to be disposed.</param>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.SoundEffect">
+            <summary>Represents a loaded sound resource.</summary>
+            <remarks>
+            <para>A SoundEffect represents the buffer used to hold audio data and metadata. SoundEffectInstances are used to play from SoundEffects. Multiple SoundEffectInstance objects can be created and played from the same SoundEffect object.</para>
+            <para>The only limit on the number of loaded SoundEffects is restricted by available memory. When a SoundEffect is disposed, all SoundEffectInstances created from it will become invalid.</para>
+            <para>SoundEffect.Play() can be used for 'fire and forget' sounds. If advanced playback controls like volume or pitch is required, use SoundEffect.CreateInstance().</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Initialize">
+            <summary>
+            Initializes the sound system for SoundEffect support.
+            This method is automatically called when a SoundEffect is loaded, a DynamicSoundEffectInstance is created, or Microphone.All is queried.
+            You can however call this method manually (preferably in, or before the Game constructor) to catch any Exception that may occur during the sound system initialization (and act accordingly).
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+            <summary>
+            Create a sound effect.
+            </summary>
+            <param name="buffer">The buffer with the sound data.</param>
+            <param name="sampleRate">The sound data sample rate in hertz.</param>
+            <param name="channels">The number of channels in the sound data.</param>
+            <remarks>This only supports uncompressed 16bit PCM wav data.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels,System.Int32,System.Int32)">
+            <summary>
+            Create a sound effect.
+            </summary>
+            <param name="buffer">The buffer with the sound data.</param>
+            <param name="offset">The offset to the start of the sound data in bytes.</param>
+            <param name="count">The length of the sound data in bytes.</param>
+            <param name="sampleRate">The sound data sample rate in hertz.</param>
+            <param name="channels">The number of channels in the sound data.</param>
+            <param name="loopStart">The position where the sound should begin looping in samples.</param>
+            <param name="loopLength">The duration of the sound data loop in samples.</param>
+            <remarks>This only supports uncompressed 16bit PCM wav data.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffect"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance">
+            <summary>
+            Creates a new SoundEffectInstance for this SoundEffect.
+            </summary>
+            <returns>A new SoundEffectInstance for this SoundEffect.</returns>
+            <remarks>Creating a SoundEffectInstance before calling SoundEffectInstance.Play() allows you to access advanced playback features, such as volume, pitch, and 3D positioning.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.FromStream(System.IO.Stream)">
+            <summary>
+            Creates a new SoundEffect object based on the specified data stream.
+            </summary>
+            <param name="stream">A stream containing the wave data.</param>
+            <returns>A new SoundEffect object.</returns>
+            <remarks>The stream must point to the head of a valid wave file in the RIFF bitstream format.  The formats supported are:
+            <list type="bullet">
+            <item>
+            <description>8-bit unsigned PCM</description>
+            <description>16-bit signed PCM</description>
+            <description>24-bit signed PCM</description>
+            <description>32-bit IEEE float PCM</description>
+            <description>MS-ADPCM 4-bit compressed</description>
+            <description>IMA/ADPCM (IMA4) 4-bit compressed</description>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+            <summary>
+            Returns the duration for PCM audio.
+            </summary>
+            <param name="sampleCount">The amount of samples.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
+            <param name="sampleRate">Sample rate in hertz (Hz). Must be between 8000 Hz and 48000 Hz</param>
+            <param name="channels">Number of channels in the audio data.</param>
+            <returns>The duration of the audio data.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
+            <summary>
+            Returns the data size in bytes for PCM audio.
+            </summary>
+            <param name="duration">The total duration of the audio data.</param>
+            <param name="sampleSize">The size of one sample in bits.</param>
+            <param name="sampleRate">Sample rate in hertz (Hz), of audio data. Must be between 8,000 and 48,000 Hz.</param>
+            <param name="channels">Number of channels in the audio data.</param>
+            <returns>The size in bytes of a single sample of audio data.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play">
+            <summary>Gets an internal SoundEffectInstance and plays it.</summary>
+            <returns>True if a SoundEffectInstance was successfully played, false if not.</returns>
+            <remarks>
+            <para>Play returns false if more SoundEffectInstances are currently playing then the platform allows.</para>
+            <para>To loop a sound or apply 3D effects, call SoundEffect.CreateInstance() and SoundEffectInstance.Play() instead.</para>
+            <para>SoundEffectInstances used by SoundEffect.Play() are pooled internally.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play(System.Single,System.Single,System.Single)">
+            <summary>Gets an internal SoundEffectInstance and plays it with the specified volume, pitch, and panning.</summary>
+            <returns>True if a SoundEffectInstance was successfully created and played, false if not.</returns>
+            <param name="volume">Volume, ranging from 0.0 (silence) to 1.0 (full volume). Volume during playback is scaled by SoundEffect.MasterVolume.</param>
+            <param name="pitch">Pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave).</param>
+            <param name="pan">Panning, ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).</param>
+            <remarks>
+            <para>Play returns false if more SoundEffectInstances are currently playing then the platform allows.</para>
+            <para>To apply looping or simulate 3D audio, call SoundEffect.CreateInstance() and SoundEffectInstance.Play() instead.</para>
+            <para>SoundEffectInstances used by SoundEffect.Play() are pooled internally.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetPooledInstance(System.Boolean)">
+            <summary>
+            Returns a sound effect instance from the pool or null if none are available.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.Duration">
+            <summary>Gets the duration of the SoundEffect.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.Name">
+            <summary>Gets or sets the asset name of the SoundEffect.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume">
+            <summary>
+            Gets or sets the master volume scale applied to all SoundEffectInstances.
+            </summary>
+            <remarks>
+            <para>Each SoundEffectInstance has its own Volume property that is independent to SoundEffect.MasterVolume. During playback SoundEffectInstance.Volume is multiplied by SoundEffect.MasterVolume.</para>
+            <para>This property is used to adjust the volume on all current and newly created SoundEffectInstances. The volume of an individual SoundEffectInstance can be adjusted on its own.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.DistanceScale">
+            <summary>
+            Gets or sets the scale of distance calculations.
+            </summary>
+            <remarks> 
+            <para>DistanceScale defaults to 1.0 and must be greater than 0.0.</para>
+            <para>Higher values reduce the rate of falloff between the sound and listener.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.DopplerScale">
+            <summary>
+            Gets or sets the scale of Doppler calculations applied to sounds.
+            </summary>
+            <remarks>
+            <para>DopplerScale defaults to 1.0 and must be greater or equal to 0.0</para>
+            <para>Affects the relative velocity of emitters and listeners.</para>
+            <para>Higher values more dramatically shift the pitch for the given relative velocity of the emitter and listener.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.SpeedOfSound">
+            <summary>Returns the speed of sound used when calculating the Doppler effect..</summary>
+            <remarks>
+            <para>Defaults to 343.5. Value is measured in meters per second.</para>
+            <para>Has no effect on distance attenuation.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.IsDisposed">
+            <summary>Indicates whether the object is disposed.</summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose">
+            <summary>Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffect"/>.</summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose(System.Boolean)">
+            <summary>
+            Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffect"/>.
+            </summary>
+            <param name="disposing">If set to <c>true</c>, Dispose was called explicitly.</param>
+            <remarks>If the disposing parameter is true, the Dispose method was called explicitly. This
+            means that managed objects referenced by this instance should be disposed or released as
+            required.  If the disposing parameter is false, Dispose was called by the finalizer and
+            no managed objects should be touched because we do not know if they are still valid or
+            not at that time.  Unmanaged resources should always be released.</remarks>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance">
+            <summary>
+             Represents a single instance of a playing, paused, or stopped sound.
+             </summary>
+            <remarks>
+            SoundEffectInstances are created through SoundEffect.CreateInstance() and used internally by SoundEffect.Play().
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State">
+            <summary>Gets the SoundEffectInstance's current playback state.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped">
+            <summary>Enables or Disables whether the SoundEffectInstance should repeat after playback.</summary>
+            <remarks>This value has no effect on an already playing sound.</remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan">
+            <summary>Gets or sets the pan, or speaker balance..</summary>
+            <value>Pan value ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker). Values outside of this range will throw an exception.</value>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch">
+            <summary>Gets or sets the pitch adjustment.</summary>
+            <value>Pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave). Values outside of this range will throw an Exception.</value>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume">
+            <summary>Gets or sets the volume of the SoundEffectInstance.</summary>
+            <value>Volume, ranging from 0.0 (silence) to 1.0 (full volume). Volume during playback is scaled by SoundEffect.MasterVolume.</value>
+            <remarks>
+            This is the volume relative to SoundEffect.MasterVolume. Before playback, this Volume property is multiplied by SoundEffect.MasterVolume when determining the final mix volume.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
+            <summary>Applies 3D positioning to the SoundEffectInstance using a single listener.</summary>
+            <param name="listener">Data about the listener.</param>
+            <param name="emitter">Data about the source of emission.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)">
+            <summary>Applies 3D positioning to the SoundEffectInstance using multiple listeners.</summary>
+            <param name="listeners">Data about each listener.</param>
+            <param name="emitter">Data about the source of emission.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause">
+            <summary>Pauses playback of a SoundEffectInstance.</summary>
+            <remarks>Paused instances can be resumed with SoundEffectInstance.Play() or SoundEffectInstance.Resume().</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play">
+            <summary>Plays or resumes a SoundEffectInstance.</summary>
+            <remarks>Throws an exception if more sounds are playing than the platform allows.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume">
+            <summary>Resumes playback for a SoundEffectInstance.</summary>
+            <remarks>Only has effect on a SoundEffectInstance in a paused state.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop">
+            <summary>Immediately stops playing a SoundEffectInstance.</summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)">
+            <summary>Stops playing a SoundEffectInstance, either immediately or as authored.</summary>
+            <param name="immediate">Determined whether the sound stops immediately, or after playing its release phase and/or transitions.</param>
+            <remarks>Stopping a sound with the immediate argument set to false will allow it to play any release phases, such as fade, before coming to a stop.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose(System.Boolean)">
+            <summary>
+            Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.
+            </summary>
+            <param name="disposing">If set to <c>true</c>, Dispose was called explicitly.</param>
+            <remarks>If the disposing parameter is true, the Dispose method was called explicitly. This
+            means that managed objects referenced by this instance should be disposed or released as
+            required. If the disposing parameter is false, Dispose was called by the finalizer and
+            no managed objects should be touched because we do not know if they are still valid or
+            not at that time. Unmanaged resources should always be released.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose">
+            <summary>
+            Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Finalize">
+            <summary>
+            Releases unmanaged resources and performs other cleanup operations before the
+            <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is reclaimed by garbage collection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.InitializeSound">
+            <summary>
+            Gets the OpenAL sound controller, constructs the sound buffer, and sets up the event delegates for
+            the reserved and recycled events.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.SoundsAvailable">
+            <summary>
+            Gets a value indicating whether the platform has capacity for more sounds to be played at this time.
+            </summary>
+            <value><c>true</c> if more sounds can be played; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
+            <summary>
+            Add the specified instance to the pool if it is a pooled instance and removes it from the
+            list of playing instances.
+            </summary>
+            <param name="inst">The SoundEffectInstance</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Remove(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
+            <summary>
+            Adds the SoundEffectInstance to the list of playing instances.
+            </summary>
+            <param name="inst">The SoundEffectInstance to add to the playing list.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.GetInstance(System.Boolean)">
+            <summary>
+            Returns a pooled SoundEffectInstance if one is available, or allocates a new
+            SoundEffectInstance if the pool is empty.
+            </summary>
+            <returns>The SoundEffectInstance.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Update">
+            <summary>
+            Iterates the list of playing instances, returning them to the pool if they
+            have stopped playing.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.StopPooledInstances(Microsoft.Xna.Framework.Audio.SoundEffect)">
+            <summary>
+            Iterates the list of playing instances, stop them and return them to the pool if they are instances of the given SoundEffect.
+            </summary>
+            <param name="effect">The SoundEffect</param>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.SoundState">
+            <summary>Described the playback state of a <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.</summary>
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.SoundState.Playing">
+            <summary>The <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is currently playing.</summary>
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.SoundState.Paused">
+            <summary>The <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is currently paused.</summary>
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.SoundState.Stopped">
+            <summary>The <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is currently stopped.</summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.MicrophoneState">
+            <summary>
+            Microphone state. 
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.Microphone">
+            <summary>
+            Provides microphones capture features. 
+            </summary>
+            <summary>
+            Provides microphones capture features.  
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.Default">
+            <summary>
+            Returns the default microphone.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.All">
+            <summary>
+            Returns all compatible microphones.
+            </summary>
+        </member>
+        <member name="E:Microsoft.Xna.Framework.Audio.Microphone.BufferReady">
+            <summary>
+            Event fired when the audio data are available.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.Name">
+            <summary>
+            Returns the friendly name of the microphone.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.SampleRate">
+            <summary>
+            Returns the sample rate of the captured audio.
+            Note: default value is 44100hz
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.State">
+            <summary>
+            Returns the state of the Microphone. 
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.BufferDuration">
+            <summary>
+            Gets or sets the capture buffer duration. This value must be greater than 100 milliseconds, lower than 1000 milliseconds, and must be 10 milliseconds aligned (BufferDuration % 10 == 10).
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.IsHeadset">
+            <summary>
+            Determines if the microphone is a wired headset.
+            Note: XNA could know if a headset microphone was plugged in an Xbox 360 controller but MonoGame can't.
+            Hence, this is always true on mobile platforms, and always false otherwise.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleDuration(System.Int32)">
+            <summary>
+            Returns the duration based on the size of the buffer (assuming 16-bit PCM data).
+            </summary>
+            <param name="sizeInBytes">Size, in bytes</param>
+            <returns>TimeSpan of the duration.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleSizeInBytes(System.TimeSpan)">
+            <summary>
+            Returns the size, in bytes, of the array required to hold the specified duration of 16-bit PCM data. 
+            </summary>
+            <param name="duration">TimeSpan of the duration of the sample.</param>
+            <returns>Size, in bytes, of the buffer.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.Start">
+            <summary>
+            Starts microphone capture.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.Stop">
+            <summary>
+            Stops microphone capture.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[])">
+            <summary>
+            Gets the latest available data from the microphone.
+            </summary>
+            <param name="buffer">Buffer, in bytes, of the captured data (16-bit PCM).</param>
+            <returns>The buffer size, in bytes, of the captured data.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Gets the latest available data from the microphone.
+            </summary>
+            <param name="buffer">Buffer, in bytes, of the captured data (16-bit PCM).</param>
+            <param name="offset">Byte offset.</param>
+            <param name="count">Amount, in bytes.</param>
+            <returns>The buffer size, in bytes, of the captured data.</returns>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.NoMicrophoneException">
+            <summary>
+            The exception thrown when no audio hardware is present, or driver issues are detected.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.NoMicrophoneException.#ctor(System.String)">
+            <param name="msg">A message describing the error.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.NoMicrophoneException.#ctor(System.String,System.Exception)">
+            <param name="msg">A message describing the error.</param>
+            <param name="innerException">The exception that is the underlying cause of the current exception. If not null, the current exception is raised in a try/catch block that handled the innerException.</param>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.AudioCategory">
+            <summary>
+            Provides functionality for manipulating multiple sounds at a time.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioCategory.Name">
+            <summary>
+            Gets the category's friendly name.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Pause">
+            <summary>
+            Pauses all associated sounds.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Resume">
+            <summary>
+            Resumes all associated paused sounds.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Stop(Microsoft.Xna.Framework.Audio.AudioStopOptions)">
+            <summary>
+            Stops all associated sounds.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.op_Equality(Microsoft.Xna.Framework.Audio.AudioCategory,Microsoft.Xna.Framework.Audio.AudioCategory)">
+            <summary>
+            Determines whether two AudioCategory instances are equal.
+            </summary>
+            <param name="first">First AudioCategory instance to compare.</param>
+            <param name="second">Second AudioCategory instance to compare.</param>
+            <returns>true if the objects are equal or false if they aren't.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.op_Inequality(Microsoft.Xna.Framework.Audio.AudioCategory,Microsoft.Xna.Framework.Audio.AudioCategory)">
+            <summary>
+            Determines whether two AudioCategory instances are not equal.
+            </summary>
+            <param name="first">First AudioCategory instance to compare.</param>
+            <param name="second">Second AudioCategory instance to compare.</param>
+            <returns>true if the objects are not equal or false if they are.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Equals(Microsoft.Xna.Framework.Audio.AudioCategory)">
+            <summary>
+            Determines whether two AudioCategory instances are equal.
+            </summary>
+            <param name="other">AudioCategory to compare with this instance.</param>
+            <returns>true if the objects are equal or false if they aren't</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Equals(System.Object)">
+            <summary>
+            Determines whether two AudioCategory instances are equal.
+            </summary>
+            <param name="obj">Object to compare with this instance.</param>
+            <returns>true if the objects are equal or false if they aren't.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.GetHashCode">
+            <summary>
+            Gets the hash code for this instance.
+            </summary>
+            <returns>Hash code for this object.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.ToString">
+            <summary>
+            Returns the name of this AudioCategory
+            </summary>
+            <returns>Friendly name of the AudioCategory</returns>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.AudioEngine">
+            <summary>
+            Class used to create and manipulate code audio objects.
+            </summary> 
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.AudioEngine.ContentVersion">
+            <summary>
+            The current content version.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.#ctor(System.String)">
+            <param name="settingsFile">Path to a XACT settings file.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.#ctor(System.String,System.TimeSpan,System.String)">
+            <param name="settingsFile">Path to a XACT settings file.</param>
+            <param name="lookAheadTime">Determines how many milliseconds the engine will look ahead when determing when to transition to another sound.</param>
+            <param name="rendererId">A string that specifies the audio renderer to use.</param>
+            <remarks>For the best results, use a lookAheadTime of 250 milliseconds or greater.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.Update">
+            <summary>
+            Performs periodic work required by the audio engine.
+            </summary>
+            <remarks>Must be called at least once per frame.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.GetCategory(System.String)">
+            <summary>Returns an audio category by name.</summary>
+            <param name="name">Friendly name of the category to get.</param>
+            <returns>The AudioCategory with a matching name. Throws an exception if not found.</returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.GetGlobalVariable(System.String)">
+            <summary>Gets the value of a global variable.</summary>
+            <param name="name">Friendly name of the variable.</param>
+            <returns>float value of the queried variable.</returns>
+            <remarks>A global variable has global scope. It can be accessed by all code within a project.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.SetGlobalVariable(System.String,System.Single)">
+            <summary>Sets the value of a global variable.</summary>
+            <param name="name">Friendly name of the variable.</param>
+            <param name="value">Value of the global variable.</param>
+        </member>
+        <member name="E:Microsoft.Xna.Framework.Audio.AudioEngine.Disposing">
+            <summary>
+            This event is triggered when the AudioEngine is disposed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.AudioEngine.IsDisposed">
+            <summary>
+            Is true if the AudioEngine has been disposed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.Dispose">
+            <summary>
+            Disposes the AudioEngine.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.AudioStopOptions">
+            <summary>Controls how Cue objects should cease playback when told to stop.</summary>
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.AudioStopOptions.AsAuthored">
+            <summary>Stop normally, playing any pending release phases or transitions.</summary>
+        </member>
+        <member name="F:Microsoft.Xna.Framework.Audio.AudioStopOptions.Immediate">
+            <summary>Immediately stops the cue, ignoring any pending release phases or transitions.</summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.Cue">
+            <summary>Manages the playback of a sound or set of sounds.</summary>
+            <remarks>
+            <para>Cues are comprised of one or more sounds.</para>
+            <para>Cues also define specific properties such as pitch or volume.</para>
+            <para>Cues are referenced through SoundBank objects.</para>
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsPaused">
+            <summary>Indicates whether or not the cue is currently paused.</summary>
+            <remarks>IsPlaying and IsPaused both return true if a cue is paused while playing.</remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsPlaying">
+            <summary>Indicates whether or not the cue is currently playing.</summary>
+            <remarks>IsPlaying and IsPaused both return true if a cue is paused while playing.</remarks>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsStopped">
+            <summary>Indicates whether or not the cue is currently stopped.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Cue.Name">
+            <summary>Gets the friendly name of the cue.</summary>
+            <remarks>The friendly name is a value set from the designer.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Pause">
+            <summary>Pauses playback.</summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Play">
+            <summary>Requests playback of a prepared or preparing Cue.</summary>
+            <remarks>Calling Play when the Cue already is playing can result in an InvalidOperationException.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Resume">
+            <summary>Resumes playback of a paused Cue.</summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Stop(Microsoft.Xna.Framework.Audio.AudioStopOptions)">
+            <summary>Stops playback of a Cue.</summary>
+            <param name="options">Specifies if the sound should play any pending release phases or transitions before stopping.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.SetVariable(System.String,System.Single)">
+            <summary>
+            Sets the value of a cue-instance variable based on its friendly name.
+            </summary>
+            <param name="name">Friendly name of the variable to set.</param>
+            <param name="value">Value to assign to the variable.</param>
+            <remarks>The friendly name is a value set from the designer.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.GetVariable(System.String)">
+            <summary>Gets a cue-instance variable value based on its friendly name.</summary>
+            <param name="name">Friendly name of the variable.</param>
+            <returns>Value of the variable.</returns>
+            <remarks>
+            <para>Cue-instance variables are useful when multiple instantiations of a single cue (and its associated sounds) are required (for example, a "car" cue where there may be more than one car at any given time). While a global variable allows multiple audio elements to be controlled in unison, a cue instance variable grants discrete control of each instance of a cue, even for each copy of the same cue.</para>
+            <para>The friendly name is a value set from the designer.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
+            <summary>Updates the simulated 3D Audio settings calculated between an AudioEmitter and AudioListener.</summary>
+            <param name="listener">The listener to calculate.</param>
+            <param name="emitter">The emitter to calculate.</param>
+            <remarks>
+            <para>This must be called before Play().</para>
+            <para>Calling this method automatically converts the sound to monoaural and sets the speaker mix for any sound played by this cue to a value calculated with the listener's and emitter's positions. Any stereo information in the sound will be discarded.</para>
+            </remarks>
+        </member>
+        <member name="E:Microsoft.Xna.Framework.Audio.Cue.Disposing">
+            <summary>
+            This event is triggered when the Cue is disposed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsDisposed">
+            <summary>
+            Is true if the Cue has been disposed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Dispose">
+            <summary>
+            Disposes the Cue.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.SoundBank">
+            <summary>Represents a collection of Cues.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundBank.IsInUse">
+            <summary>
+            Is true if the SoundBank has any live Cues in use.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.#ctor(Microsoft.Xna.Framework.Audio.AudioEngine,System.String)">
+            <param name="audioEngine">AudioEngine that will be associated with this sound bank.</param>
+            <param name="fileName">Path to a .xsb SoundBank file.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.GetCue(System.String)">
+            <summary>
+            Returns a pooled Cue object.
+            </summary>
+            <param name="name">Friendly name of the cue to get.</param>
+            <returns>a unique Cue object from a pool.</returns>
+            <remarks>
+            <para>Cue instances are unique, even when sharing the same name. This allows multiple instances to simultaneously play.</para>
+            </remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.PlayCue(System.String)">
+            <summary>
+            Plays a cue.
+            </summary>
+            <param name="name">Name of the cue to play.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.PlayCue(System.String,Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
+            <summary>
+            Plays a cue with static 3D positional information.
+            </summary>
+            <remarks>
+            Commonly used for short lived effects.  To dynamically change the 3D 
+            positional information on a cue over time use <see cref="M:Microsoft.Xna.Framework.Audio.SoundBank.GetCue(System.String)"/> and <see cref="M:Microsoft.Xna.Framework.Audio.Cue.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)"/>.</remarks>
+            <param name="name">The name of the cue to play.</param>
+            <param name="listener">The listener state.</param>
+            <param name="emitter">The cue emitter state.</param>
+        </member>
+        <member name="E:Microsoft.Xna.Framework.Audio.SoundBank.Disposing">
+            <summary>
+            This event is triggered when the SoundBank is disposed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.SoundBank.IsDisposed">
+            <summary>
+            Is true if the SoundBank has been disposed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.Dispose">
+            <summary>
+            Disposes the SoundBank.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Audio.WaveBank">
+            <summary>Represents a collection of wave files.</summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.WaveBank.IsInUse">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.WaveBank.IsPrepared">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.WaveBank.#ctor(Microsoft.Xna.Framework.Audio.AudioEngine,System.String)">
+            <param name="audioEngine">Instance of the AudioEngine to associate this wave bank with.</param>
+            <param name="nonStreamingWaveBankFilename">Path to the .xwb file to load.</param>
+            <remarks>This constructor immediately loads all wave data into memory at once.</remarks>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.WaveBank.#ctor(Microsoft.Xna.Framework.Audio.AudioEngine,System.String,System.Int32,System.Int16)">
+            <param name="audioEngine">Instance of the AudioEngine to associate this wave bank with.</param>
+            <param name="streamingWaveBankFilename">Path to the .xwb to stream from.</param>
+            <param name="offset">DVD sector-aligned offset within the wave bank data file.</param>
+            <param name="packetsize">Stream packet size, in sectors, to use for each stream. The minimum value is 2.</param>
+            <remarks>
+            <para>This constructor streams wave data as needed.</para>
+            <para>Note that packetsize is in sectors, which is 2048 bytes.</para>
+            <para>AudioEngine.Update() must be called at least once before using data from a streaming wave bank.</para>
+            </remarks>
+        </member>
+        <member name="E:Microsoft.Xna.Framework.Audio.WaveBank.Disposing">
+            <summary>
+            This event is triggered when the WaveBank is disposed.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Audio.WaveBank.IsDisposed">
+            <summary>
+            Is true if the WaveBank has been disposed.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.WaveBank.Dispose">
+            <summary>
+            Disposes the WaveBank.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.XactClip.SetVolumeScale(System.Single)">
+            <summary>
+            Set the combined volume scale from the parent objects.
+            </summary>
+            <param name="volume">The volume scale.</param>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Audio.XactClip.SetVolume(System.Single)">
+            <summary>
+            Set the volume for the clip.
+            </summary>
+            <param name="volume">The volume level.</param>
+        </member>
         <member name="T:Microsoft.Xna.Framework.IShapeF">
             <summary>
                 Base class for shapes.
@@ -1043,215 +2095,13 @@
                 A <see cref="T:System.String" /> that represents this <see cref="T:Microsoft.Xna.Framework.SizeF" />.
             </returns>
         </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Album.Duration">
-            <summary>
-            Gets the duration of the Album.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Album.Genre">
-            <summary>
-            Gets the Genre of the Album.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Album.HasArt">
-            <summary>
-            Gets a value indicating whether the Album has associated album art.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Album.IsDisposed">
-            <summary>
-            Gets a value indicating whether the object is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Album.Name">
-            <summary>
-            Gets the name of the Album.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Album.Songs">
-            <summary>
-            Gets a SongCollection that contains the songs on the album.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Album.Dispose">
-            <summary>
-            Immediately releases the unmanaged resources used by this object.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Album.GetAlbumArt">
-            <summary>
-            Returns the stream that contains the album art image data.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Album.GetThumbnail">
-            <summary>
-            Returns the stream that contains the album thumbnail image data.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Album.ToString">
-            <summary>
-            Returns a String representation of this Album.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Album.GetHashCode">
-            <summary>
-            Gets the hash code for this instance.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.AlbumCollection.Count">
-            <summary>
-            Gets the number of Album objects in the AlbumCollection.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.AlbumCollection.IsDisposed">
-            <summary>
-            Gets a value indicating whether the object is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.AlbumCollection.Item(System.Int32)">
-            <summary>
-            Gets the Album at the specified index in the AlbumCollection.
-            </summary>
-            <param name="index">Index of the Album to get.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.AlbumCollection.Dispose">
-            <summary>
-            Immediately releases the unmanaged resources used by this object.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Artist.Albums">
-            <summary>
-            Gets the AlbumCollection for the Artist.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Artist.IsDisposed">
-            <summary>
-            Gets a value indicating whether the object is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Artist.Name">
-            <summary>
-            Gets the name of the Artist.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Artist.Songs">
-            <summary>
-            Gets the SongCollection for the Artist.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Artist.Dispose">
-            <summary>
-            Immediately releases the unmanaged resources used by this object.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Artist.ToString">
-            <summary>
-            Returns a String representation of the Artist.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Artist.GetHashCode">
-            <summary>
-            Gets the hash code for this instance.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Genre.Albums">
-            <summary>
-            Gets the AlbumCollection for the Genre.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Genre.IsDisposed">
-            <summary>
-            Gets a value indicating whether the object is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Genre.Name">
-            <summary>
-            Gets the name of the Genre.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Genre.Songs">
-            <summary>
-            Gets the SongCollection for the Genre.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Genre.Dispose">
-            <summary>
-            Immediately releases the unmanaged resources used by this object.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Genre.ToString">
-            <summary>
-            Returns a String representation of the Genre.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Genre.GetHashCode">
-            <summary>
-            Gets the hash code for this instance.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.MediaLibrary.Load(System.Action{System.Int32})">
-            <summary>
-            Load the contents of MediaLibrary. This blocking call might take up to a few
-            minutes depending on the platform and the size of the user's music library.
-            </summary>
-            <param name="progressCallback">
-            Callback that reports back the progress of the music library loading in percents (0-100).
-            </param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.MediaPlayer.Play(Microsoft.Xna.Framework.Media.Song)">
-            <summary>
-            Play clears the current playback queue, and then queues up the specified song for playback. 
-            Playback starts immediately at the beginning of the song.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Media.MediaPlayer.Play(Microsoft.Xna.Framework.Media.Song,System.Nullable{System.TimeSpan})">
-            <summary>
-            Play clears the current playback queue, and then queues up the specified song for playback. 
-            Playback starts immediately at the given position of the song.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Song.Album">
-            <summary>
-            Gets the Album on which the Song appears.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Song.Artist">
-            <summary>
-            Gets the Artist of the Song.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Media.Song.Genre">
-            <summary>
-            Gets the Genre of the Song.
-            </summary>
-        </member>
         <member name="M:Microsoft.Xna.Framework.Media.Song.FromUri(System.String,System.Uri)">
             <summary>
-            Returns a song that can be played via <see cref="T:Microsoft.Xna.Framework.Media.MediaPlayer"/>.
+            Returns a song that can be played.
             </summary>
             <param name="name">The name for the song. See <see cref="P:Microsoft.Xna.Framework.Media.Song.Name"/>.</param>
             <param name="uri">The path to the song file.</param>
             <returns></returns>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Media.VideoSoundtrackType">
-            <summary>
-            Type of sounds in a video
-            </summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Media.VideoSoundtrackType.Music">
-            <summary>
-            This video contains only music.
-            </summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Media.VideoSoundtrackType.Dialog">
-            <summary>
-            This video contains only dialog.
-            </summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Media.VideoSoundtrackType.MusicAndDialog">
-            <summary>
-            This video contains music and dialog.
-            </summary>
         </member>
         <member name="T:Microsoft.Xna.Framework.Graphics.SpriteBatch">
             <summary>
@@ -4227,17 +5077,17 @@
             The render target content might be preserved if the platform can do so without a penalty in performance or memory usage.
             </summary>
         </member>
-        <member name="P:Microsoft.Xna.Framework.Graphics.ResourceCreatedEventArgs.Resource">
+        <member name="P:Microsoft.Xna.Framework.Graphics.ResourceCreatedEvent.Resource">
             <summary>
             The newly created resource object.
             </summary>
         </member>
-        <member name="P:Microsoft.Xna.Framework.Graphics.ResourceDestroyedEventArgs.Name">
+        <member name="P:Microsoft.Xna.Framework.Graphics.ResourceDestroyedEvent.Name">
             <summary>
             The name of the destroyed resource.
             </summary>
         </member>
-        <member name="P:Microsoft.Xna.Framework.Graphics.ResourceDestroyedEventArgs.Tag">
+        <member name="P:Microsoft.Xna.Framework.Graphics.ResourceDestroyedEvent.Tag">
             <summary>
             The resource manager tag of the destroyed resource.
             </summary>
@@ -10752,33 +11602,6 @@
             Unknown display orientation.
             </summary>
         </member>
-        <member name="T:Microsoft.Xna.Framework.EventHelpers">
-            <summary>
-            Provides helper methods to make it easier
-            to safely raise events.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.EventHelpers.Raise``1(System.Object,System.EventHandler{``0},``0)">
-            <summary>
-            Safely raises an event by storing a copy of the event's delegate
-            in the <paramref name="handler"/> parameter and checking it for
-            null before invoking it.
-            </summary>
-            <typeparam name="TEventArgs"></typeparam>
-            <param name="sender">The object raising the event.</param>
-            <param name="handler"><see cref="T:System.EventHandler`1"/> to be invoked</param>
-            <param name="e">The <typeparamref name="TEventArgs"/> passed to <see cref="T:System.EventHandler`1"/></param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.EventHelpers.Raise(System.Object,System.EventHandler,System.EventArgs)">
-            <summary>
-            Safely raises an event by storing a copy of the event's delegate
-            in the <paramref name="handler"/> parameter and checking it for
-            null before invoking it.
-            </summary>
-            <param name="sender">The object raising the event.</param>
-            <param name="handler"><see cref="T:System.EventHandler"/> to be invoked</param>
-            <param name="e">The <see cref="T:System.EventArgs"/> passed to <see cref="T:System.EventHandler"/></param>
-        </member>
         <member name="T:Microsoft.Xna.Framework.FrameworkDispatcher">
             <summary>
             Helper class for processing internal framework events.
@@ -10808,7 +11631,7 @@
         <member name="M:Microsoft.Xna.Framework.GameComponentCollection.ClearItems">
             <summary>
             Removes every <see cref="T:Microsoft.Xna.Framework.GameComponent"/> from this <see cref="T:Microsoft.Xna.Framework.GameComponentCollection"/>.
-            Triggers <see cref="M:Microsoft.Xna.Framework.GameComponentCollection.OnComponentRemoved(Microsoft.Xna.Framework.GameComponentCollectionEventArgs)"/> once for each <see cref="T:Microsoft.Xna.Framework.GameComponent"/> removed.
+            Triggers <see cref="M:Microsoft.Xna.Framework.GameComponentCollection.OnComponentRemoved(Microsoft.Xna.Framework.GameComponentCollectionEvent)"/> once for each <see cref="T:Microsoft.Xna.Framework.GameComponent"/> removed.
             </summary>
         </member>
         <member name="M:Microsoft.Xna.Framework.GameComponent.Dispose(System.Boolean)">
@@ -12345,21 +13168,21 @@
             <param name="x"></param>
             <param name="y"></param>
         </member>
-        <member name="T:Microsoft.Xna.Framework.PreparingDeviceSettingsEventArgs">
+        <member name="T:Microsoft.Xna.Framework.PreparingDeviceSettingsEvent">
             <summary>
             The arguments to the <see cref="E:Microsoft.Xna.Framework.GraphicsDeviceManager.PreparingDeviceSettings"/> event.
             </summary>
         </member>
-        <member name="M:Microsoft.Xna.Framework.PreparingDeviceSettingsEventArgs.#ctor(Microsoft.Xna.Framework.GraphicsDeviceInformation)">
+        <member name="P:Microsoft.Xna.Framework.PreparingDeviceSettingsEvent.GraphicsDeviceInformation">
+            <summary>
+            The default settings that will be used in device creation.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.PreparingDeviceSettingsEvent.#ctor(Microsoft.Xna.Framework.GraphicsDeviceInformation)">
             <summary>
             Create a new instance of the event.
             </summary>
             <param name="graphicsDeviceInformation">The default settings to be used in device creation.</param>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.PreparingDeviceSettingsEventArgs.GraphicsDeviceInformation">
-            <summary>
-            The default settings that will be used in device creation.
-            </summary>
         </member>
         <member name="T:Microsoft.Xna.Framework.Quaternion">
             <summary>
@@ -15346,1070 +16169,6 @@
             <param name="value1">Source <see cref="T:Microsoft.Xna.Framework.Vector4"/> on the left of the div sign.</param>
             <param name="divider">Divisor scalar on the right of the div sign.</param>
             <returns>The result of dividing a vector by a scalar.</returns>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.AudioChannels">
-            <summary>
-            Represents how many channels are used in the audio data.
-            </summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.AudioChannels.Mono">
-            <summary>Single channel.</summary> 
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.AudioChannels.Stereo">
-            <summary>Two channels.</summary> 
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.AudioEmitter">
-            <summary>
-            Represents a 3D audio emitter. Used to simulate 3D audio effects.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEmitter.#ctor">
-            <summary>Initializes a new AudioEmitter instance.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.DopplerScale">
-            <summary>Gets or sets a scale applied to the Doppler effect between the AudioEmitter and an AudioListener.</summary>
-            <remarks>
-            <para>Defaults to 1.0</para>
-            <para>A value of 1.0 leaves the Doppler effect unmodified.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Forward">
-            <summary>Gets or sets the emitter's forward vector.</summary>
-            <remarks>
-            <para>Defaults to Vector3.Forward. (new Vector3(0, 0, -1))</para>
-            <para>Used with AudioListener.Velocity to calculate Doppler values.</para>
-            <para>The Forward and Up values must be orthonormal.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Position">
-            <summary>Gets or sets the position of this emitter.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Up">
-            <summary>Gets or sets the emitter's Up vector.</summary>
-            <remarks>
-            <para>Defaults to Vector3.Up. (new Vector3(0, -1, 1)).</para>
-            <para>The Up and Forward vectors must be orthonormal.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioEmitter.Velocity">
-            <summary>Gets or sets the emitter's velocity vector.</summary>
-            <remarks>
-            <para>Defaults to Vector3.Zero.</para>
-            <para>This value is only used when calculating Doppler values.</para>
-            </remarks>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.AudioListener">
-            <summary>
-            Represents a 3D audio listener. Used when simulating 3D Audio.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Forward">
-            <summary>Gets or sets the listener's forward vector.</summary>
-            <remarks>
-            <para>Defaults to Vector3.Forward. (new Vector3(0, 0, -1))</para>
-            <para>Used with AudioListener.Velocity and AudioEmitter.Velocity to calculate Doppler values.</para>
-            <para>The Forward and Up vectors must be orthonormal.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Position">
-            <summary>Gets or sets the listener's position.</summary>
-            <remarks>
-            Defaults to Vector3.Zero.
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Up">
-            <summary>
-            Gets or sets the listener's up vector..
-            </summary>
-            <remarks>
-            <para>Defaults to Vector3.Up (New Vector3(0, -1, 0)).</para>
-            <para>Used with AudioListener.Velocity and AudioEmitter.Velocity to calculate Doppler values.</para>
-            <para>The values of the Forward and Up vectors must be orthonormal.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioListener.Velocity">
-            <summary>Gets or sets the listener's velocity vector.</summary>
-            <remarks>
-            <para>Defaults to Vector3.Zero.</para>
-            <para>Scaled by DopplerScale to calculate the Doppler effect value applied to a Cue.</para>
-            <para>This value is only used to calculate Doppler values.</para>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioLoader.Load(System.IO.Stream,MonoGame.OpenAL.ALFormat@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <summary>
-            Load a WAV file from stream.
-            </summary>
-            <param name="stream">The stream positioned at the start of the WAV file.</param>
-            <param name="format">Gets the OpenAL format enumeration value.</param>
-            <param name="frequency">Gets the frequency or sample rate.</param>
-            <param name="channels">Gets the number of channels.</param>
-            <param name="blockAlignment">Gets the block alignment, important for compressed sounds.</param>
-            <param name="bitsPerSample">Gets the number of bits per sample.</param>
-            <param name="samplesPerBlock">Gets the number of samples per block.</param>
-            <param name="sampleCount">Gets the total number of samples.</param>
-            <returns>The byte buffer containing the waveform data or compressed blocks.</returns>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
-            <summary>
-            A <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> for which the audio buffer is provided by the game at run time.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.IsLooped">
-            <summary>
-            This value has no effect on DynamicSoundEffectInstance.
-            It may not be set.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.PendingBufferCount">
-            <summary>
-            Returns the number of audio buffers queued for playback.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferedSamples">
-            <summary>
-            Returns the number of samples queued for playback.
-            </summary>
-        </member>
-        <member name="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded">
-            <summary>
-            The event that occurs when the number of queued audio buffers is less than or equal to 2.
-            </summary>
-            <remarks>
-            This event may occur when <see cref="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play"/> is called or during playback when a buffer is completed.
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.#ctor(System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
-            <param name="sampleRate">Sample rate, in Hertz (Hz).</param>
-            <param name="channels">Number of channels (mono or stereo).</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleDuration(System.Int32,System.Int32)">
-            <summary>
-            Returns the duration of an audio buffer of the specified size, based on the settings of this instance.
-            </summary>
-            <param name="sampleCount">The amount of samples.</param>
-            <param name="sampleSize">The size of one sample in bits.</param>
-            <returns>The playback length of the buffer.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.GetSampleSizeInBytes(System.TimeSpan,System.Int32)">
-            <summary>
-            Returns the size, in bytes, of a buffer of the specified duration, based on the settings of this instance.
-            </summary>
-            <param name="duration">The playback length of the buffer.</param>
-            <param name="sampleSize">The size of one sample in bits.</param>
-            <returns>The data size of the buffer, in bytes.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Play">
-            <summary>
-            Plays or resumes the DynamicSoundEffectInstance.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Pause">
-            <summary>
-            Pauses playback of the DynamicSoundEffectInstance.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Resume">
-            <summary>
-            Resumes playback of the DynamicSoundEffectInstance.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Stop">
-            <summary>
-            Immediately stops playing the DynamicSoundEffectInstance.
-            </summary>
-            <remarks>
-            Calling this also releases all queued buffers.
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.Stop(System.Boolean)">
-            <summary>
-            Stops playing the DynamicSoundEffectInstance.
-            If the <paramref name="immediate"/> parameter is false, this call has no effect.
-            </summary>
-            <remarks>
-            Calling this also releases all queued buffers.
-            </remarks>
-            <param name="immediate">When set to false, this call has no effect.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[])">
-            <summary>
-            Queues an audio buffer for playback.
-            </summary>
-            <remarks>
-            The buffer length must conform to alignment requirements for the audio format.
-            </remarks>
-            <param name="buffer">The buffer containing PCM audio data.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Int16[])">
-            <summary>
-            Queues an audio buffer for playback.
-            </summary>
-            <remarks>
-            The buffer length must conform to alignment requirements for the audio format.
-            </remarks>
-            <param name="buffer">The buffer containing PCM audio data.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Single[])">
-            <summary>
-            Queues an audio buffer for playback.
-            </summary>
-            <remarks>
-            The buffer length must conform to alignment requirements for the audio format.
-            </remarks>
-            <param name="buffer">The buffer containing PCM audio data.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Queues an audio buffer for playback.
-            </summary>
-            <remarks>
-            The buffer length must conform to alignment requirements for the audio format.
-            </remarks>
-            <param name="buffer">The buffer containing PCM audio data.</param>
-            <param name="offset">The starting position of audio data.</param>
-            <param name="count">The amount of elements to use.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Int16[],System.Int32,System.Int32)">
-            <summary>
-            Queues an audio buffer for playback.
-            </summary>
-            <remarks>
-            The buffer length must conform to alignment requirements for the audio format.
-            </remarks>
-            <param name="buffer">The buffer containing PCM audio data.</param>
-            <param name="offset">The starting position of audio data.</param>
-            <param name="count">The amount of elements to use.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.SubmitBuffer(System.Single[],System.Int32,System.Int32)">
-            <summary>
-            Queues an audio buffer for playback.
-            </summary>
-            <remarks>
-            The buffer length must conform to alignment requirements for the audio format.
-            </remarks>
-            <param name="buffer">The buffer containing PCM audio data.</param>
-            <param name="offset">The starting position of audio data.</param>
-            <param name="count">The amount of elements to use.</param>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstanceManager">
-            <summary>
-            Handles the buffer events of all DynamicSoundEffectInstance instances.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstanceManager.Update">
-            <summary>
-            Updates buffer queues of the currently playing instances.
-            </summary>
-            <remarks>
-            XNA posts <see cref="E:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance.BufferNeeded"/> events always on the main thread.
-            </remarks>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
-            <summary>
-            The exception thrown when the system attempts to play more SoundEffectInstances than allotted.
-            </summary>
-            <remarks>
-            Most platforms have a hard limit on how many sounds can be played simultaneously. This exception is thrown when that limit is exceeded.
-            </remarks>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
-            <summary>
-            The exception thrown when no audio hardware is present, or driver issues are detected.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String)">
-            <param name="msg">A message describing the error.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.NoAudioHardwareException.#ctor(System.String,System.Exception)">
-            <param name="msg">A message describing the error.</param>
-            <param name="innerException">The exception that is the underlying cause of the current exception. If not null, the current exception is raised in a try/catch block that handled the innerException.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.OpenALSoundController.#ctor">
-            <summary>
-            Sets up the hardware resources used by the controller.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.OpenALSoundController.OpenSoundController">
-            <summary>
-            Open the sound device, sets up an audio context, and makes the new context
-            the current context. Note that this method will stop the playback of
-            music that was running prior to the game start. If any error occurs, then
-            the state of the controller is reset.
-            </summary>
-            <returns>True if the sound controller was setup, and false if not.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.OpenALSoundController.CleanUpOpenAL">
-            <summary>
-            Destroys the AL context and closes the device, when they exist.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.OpenALSoundController.Dispose">
-            <summary>
-            Dispose of the OpenALSoundCOntroller.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.OpenALSoundController.Dispose(System.Boolean)">
-            <summary>
-            Dispose of the OpenALSoundCOntroller.
-            </summary>
-            <param name="disposing">If true, the managed resources are to be disposed.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.OpenALSoundController.ReserveSource">
-            <summary>
-            Reserves a sound buffer and return its identifier. If there are no available sources
-            or the controller was not able to setup the hardware then an
-            <see cref="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException"/> is thrown.
-            </summary>
-            <returns>The source number of the reserved sound buffer.</returns>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.SoundEffect">
-            <summary>Represents a loaded sound resource.</summary>
-            <remarks>
-            <para>A SoundEffect represents the buffer used to hold audio data and metadata. SoundEffectInstances are used to play from SoundEffects. Multiple SoundEffectInstance objects can be created and played from the same SoundEffect object.</para>
-            <para>The only limit on the number of loaded SoundEffects is restricted by available memory. When a SoundEffect is disposed, all SoundEffectInstances created from it will become invalid.</para>
-            <para>SoundEffect.Play() can be used for 'fire and forget' sounds. If advanced playback controls like volume or pitch is required, use SoundEffect.CreateInstance().</para>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Initialize">
-            <summary>
-            Initializes the sound system for SoundEffect support.
-            This method is automatically called when a SoundEffect is loaded, a DynamicSoundEffectInstance is created, or Microphone.All is queried.
-            You can however call this method manually (preferably in, or before the Game constructor) to catch any Exception that may occur during the sound system initialization (and act accordingly).
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
-            <summary>
-            Create a sound effect.
-            </summary>
-            <param name="buffer">The buffer with the sound data.</param>
-            <param name="sampleRate">The sound data sample rate in hertz.</param>
-            <param name="channels">The number of channels in the sound data.</param>
-            <remarks>This only supports uncompressed 16bit PCM wav data.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.#ctor(System.Byte[],System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels,System.Int32,System.Int32)">
-            <summary>
-            Create a sound effect.
-            </summary>
-            <param name="buffer">The buffer with the sound data.</param>
-            <param name="offset">The offset to the start of the sound data in bytes.</param>
-            <param name="count">The length of the sound data in bytes.</param>
-            <param name="sampleRate">The sound data sample rate in hertz.</param>
-            <param name="channels">The number of channels in the sound data.</param>
-            <param name="loopStart">The position where the sound should begin looping in samples.</param>
-            <param name="loopLength">The duration of the sound data loop in samples.</param>
-            <remarks>This only supports uncompressed 16bit PCM wav data.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Finalize">
-            <summary>
-            Releases unmanaged resources and performs other cleanup operations before the
-            <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffect"/> is reclaimed by garbage collection.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.CreateInstance">
-            <summary>
-            Creates a new SoundEffectInstance for this SoundEffect.
-            </summary>
-            <returns>A new SoundEffectInstance for this SoundEffect.</returns>
-            <remarks>Creating a SoundEffectInstance before calling SoundEffectInstance.Play() allows you to access advanced playback features, such as volume, pitch, and 3D positioning.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.FromStream(System.IO.Stream)">
-            <summary>
-            Creates a new SoundEffect object based on the specified data stream.
-            </summary>
-            <param name="stream">A stream containing the wave data.</param>
-            <returns>A new SoundEffect object.</returns>
-            <remarks>The stream must point to the head of a valid wave file in the RIFF bitstream format.  The formats supported are:
-            <list type="bullet">
-            <item>
-            <description>8-bit unsigned PCM</description>
-            <description>16-bit signed PCM</description>
-            <description>24-bit signed PCM</description>
-            <description>32-bit IEEE float PCM</description>
-            <description>MS-ADPCM 4-bit compressed</description>
-            <description>IMA/ADPCM (IMA4) 4-bit compressed</description>
-            </item>
-            </list>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleDuration(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
-            <summary>
-            Returns the duration for PCM audio.
-            </summary>
-            <param name="sampleCount">The amount of samples.</param>
-            <param name="sampleSize">The size of one sample in bits.</param>
-            <param name="sampleRate">Sample rate in hertz (Hz). Must be between 8000 Hz and 48000 Hz</param>
-            <param name="channels">Number of channels in the audio data.</param>
-            <returns>The duration of the audio data.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetSampleSizeInBytes(System.TimeSpan,System.Int32,System.Int32,Microsoft.Xna.Framework.Audio.AudioChannels)">
-            <summary>
-            Returns the data size in bytes for PCM audio.
-            </summary>
-            <param name="duration">The total duration of the audio data.</param>
-            <param name="sampleSize">The size of one sample in bits.</param>
-            <param name="sampleRate">Sample rate in hertz (Hz), of audio data. Must be between 8,000 and 48,000 Hz.</param>
-            <param name="channels">Number of channels in the audio data.</param>
-            <returns>The size in bytes of a single sample of audio data.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play">
-            <summary>Gets an internal SoundEffectInstance and plays it.</summary>
-            <returns>True if a SoundEffectInstance was successfully played, false if not.</returns>
-            <remarks>
-            <para>Play returns false if more SoundEffectInstances are currently playing then the platform allows.</para>
-            <para>To loop a sound or apply 3D effects, call SoundEffect.CreateInstance() and SoundEffectInstance.Play() instead.</para>
-            <para>SoundEffectInstances used by SoundEffect.Play() are pooled internally.</para>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Play(System.Single,System.Single,System.Single)">
-            <summary>Gets an internal SoundEffectInstance and plays it with the specified volume, pitch, and panning.</summary>
-            <returns>True if a SoundEffectInstance was successfully created and played, false if not.</returns>
-            <param name="volume">Volume, ranging from 0.0 (silence) to 1.0 (full volume). Volume during playback is scaled by SoundEffect.MasterVolume.</param>
-            <param name="pitch">Pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave).</param>
-            <param name="pan">Panning, ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker).</param>
-            <remarks>
-            <para>Play returns false if more SoundEffectInstances are currently playing then the platform allows.</para>
-            <para>To apply looping or simulate 3D audio, call SoundEffect.CreateInstance() and SoundEffectInstance.Play() instead.</para>
-            <para>SoundEffectInstances used by SoundEffect.Play() are pooled internally.</para>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.GetPooledInstance(System.Boolean)">
-            <summary>
-            Returns a sound effect instance from the pool or null if none are available.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.Duration">
-            <summary>Gets the duration of the SoundEffect.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.Name">
-            <summary>Gets or sets the asset name of the SoundEffect.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.MasterVolume">
-            <summary>
-            Gets or sets the master volume scale applied to all SoundEffectInstances.
-            </summary>
-            <remarks>
-            <para>Each SoundEffectInstance has its own Volume property that is independent to SoundEffect.MasterVolume. During playback SoundEffectInstance.Volume is multiplied by SoundEffect.MasterVolume.</para>
-            <para>This property is used to adjust the volume on all current and newly created SoundEffectInstances. The volume of an individual SoundEffectInstance can be adjusted on its own.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.DistanceScale">
-            <summary>
-            Gets or sets the scale of distance calculations.
-            </summary>
-            <remarks> 
-            <para>DistanceScale defaults to 1.0 and must be greater than 0.0.</para>
-            <para>Higher values reduce the rate of falloff between the sound and listener.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.DopplerScale">
-            <summary>
-            Gets or sets the scale of Doppler calculations applied to sounds.
-            </summary>
-            <remarks>
-            <para>DopplerScale defaults to 1.0 and must be greater or equal to 0.0</para>
-            <para>Affects the relative velocity of emitters and listeners.</para>
-            <para>Higher values more dramatically shift the pitch for the given relative velocity of the emitter and listener.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.SpeedOfSound">
-            <summary>Returns the speed of sound used when calculating the Doppler effect..</summary>
-            <remarks>
-            <para>Defaults to 343.5. Value is measured in meters per second.</para>
-            <para>Has no effect on distance attenuation.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffect.IsDisposed">
-            <summary>Indicates whether the object is disposed.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose">
-            <summary>Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffect"/>.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.Dispose(System.Boolean)">
-            <summary>
-            Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffect"/>.
-            </summary>
-            <param name="disposing">If set to <c>true</c>, Dispose was called explicitly.</param>
-            <remarks>If the disposing parameter is true, the Dispose method was called explicitly. This
-            means that managed objects referenced by this instance should be disposed or released as
-            required.  If the disposing parameter is false, Dispose was called by the finalizer and
-            no managed objects should be touched because we do not know if they are still valid or
-            not at that time.  Unmanaged resources should always be released.</remarks>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance">
-            <summary>
-             Represents a single instance of a playing, paused, or stopped sound.
-             </summary>
-            <remarks>
-            SoundEffectInstances are created through SoundEffect.CreateInstance() and used internally by SoundEffect.Play().
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped">
-            <summary>Enables or Disables whether the SoundEffectInstance should repeat after playback.</summary>
-            <remarks>This value has no effect on an already playing sound.</remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan">
-            <summary>Gets or sets the pan, or speaker balance..</summary>
-            <value>Pan value ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker). Values outside of this range will throw an exception.</value>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch">
-            <summary>Gets or sets the pitch adjustment.</summary>
-            <value>Pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave). Values outside of this range will throw an Exception.</value>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume">
-            <summary>Gets or sets the volume of the SoundEffectInstance.</summary>
-            <value>Volume, ranging from 0.0 (silence) to 1.0 (full volume). Volume during playback is scaled by SoundEffect.MasterVolume.</value>
-            <remarks>
-            This is the volume relative to SoundEffect.MasterVolume. Before playback, this Volume property is multiplied by SoundEffect.MasterVolume when determining the final mix volume.
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.State">
-            <summary>Gets the SoundEffectInstance's current playback state.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsDisposed">
-            <summary>Indicates whether the object is disposed.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.XnaPitchToAlPitch(System.Single)">
-            <summary>
-            Converts the XNA [-1, 1] pitch range to OpenAL pitch (0, INF) or Android SoundPool playback rate [0.5, 2].
-            <param name="xnaPitch">The pitch of the sound in the Microsoft XNA range.</param>
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Finalize">
-            <summary>
-            Releases unmanaged resources and performs other cleanup operations before the
-            <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is reclaimed by garbage collection.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
-            <summary>Applies 3D positioning to the SoundEffectInstance using a single listener.</summary>
-            <param name="listener">Data about the listener.</param>
-            <param name="emitter">Data about the source of emission.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener[],Microsoft.Xna.Framework.Audio.AudioEmitter)">
-            <summary>Applies 3D positioning to the SoundEffectInstance using multiple listeners.</summary>
-            <param name="listeners">Data about each listener.</param>
-            <param name="emitter">Data about the source of emission.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pause">
-            <summary>Pauses playback of a SoundEffectInstance.</summary>
-            <remarks>Paused instances can be resumed with SoundEffectInstance.Play() or SoundEffectInstance.Resume().</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Play">
-            <summary>Plays or resumes a SoundEffectInstance.</summary>
-            <remarks>Throws an exception if more sounds are playing than the platform allows.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Resume">
-            <summary>Resumes playback for a SoundEffectInstance.</summary>
-            <remarks>Only has effect on a SoundEffectInstance in a paused state.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop">
-            <summary>Immediately stops playing a SoundEffectInstance.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Stop(System.Boolean)">
-            <summary>Stops playing a SoundEffectInstance, either immediately or as authored.</summary>
-            <param name="immediate">Determined whether the sound stops immediately, or after playing its release phase and/or transitions.</param>
-            <remarks>Stopping a sound with the immediate argument set to false will allow it to play any release phases, such as fade, before coming to a stop.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose">
-            <summary>Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Dispose(System.Boolean)">
-            <summary>
-            Releases the resources held by this <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.
-            </summary>
-            <param name="disposing">If set to <c>true</c>, Dispose was called explicitly.</param>
-            <remarks>If the disposing parameter is true, the Dispose method was called explicitly. This
-            means that managed objects referenced by this instance should be disposed or released as
-            required. If the disposing parameter is false, Dispose was called by the finalizer and
-            no managed objects should be touched because we do not know if they are still valid or
-            not at that time. Unmanaged resources should always be released.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.PlatformInitialize(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Creates a standalone SoundEffectInstance from given wavedata.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstance.InitializeSound">
-            <summary>
-            Gets the OpenAL sound controller, constructs the sound buffer, and sets up the event delegates for
-            the reserved and recycled events.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.SoundsAvailable">
-            <summary>
-            Gets a value indicating whether the platform has capacity for more sounds to be played at this time.
-            </summary>
-            <value><c>true</c> if more sounds can be played; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
-            <summary>
-            Add the specified instance to the pool if it is a pooled instance and removes it from the
-            list of playing instances.
-            </summary>
-            <param name="inst">The SoundEffectInstance</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Remove(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
-            <summary>
-            Adds the SoundEffectInstance to the list of playing instances.
-            </summary>
-            <param name="inst">The SoundEffectInstance to add to the playing list.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.GetInstance(System.Boolean)">
-            <summary>
-            Returns a pooled SoundEffectInstance if one is available, or allocates a new
-            SoundEffectInstance if the pool is empty.
-            </summary>
-            <returns>The SoundEffectInstance.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Update">
-            <summary>
-            Iterates the list of playing instances, returning them to the pool if they
-            have stopped playing.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.StopPooledInstances(Microsoft.Xna.Framework.Audio.SoundEffect)">
-            <summary>
-            Iterates the list of playing instances, stop them and return them to the pool if they are instances of the given SoundEffect.
-            </summary>
-            <param name="effect">The SoundEffect</param>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.SoundState">
-            <summary>Described the playback state of a <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/>.</summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.SoundState.Playing">
-            <summary>The <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is currently playing.</summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.SoundState.Paused">
-            <summary>The <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is currently paused.</summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.SoundState.Stopped">
-            <summary>The <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> is currently stopped.</summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.MicrophoneState">
-            <summary>
-            Microphone state. 
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.Microphone">
-            <summary>
-            Provides microphones capture features. 
-            </summary>
-            <summary>
-            Provides microphones capture features.  
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.Default">
-            <summary>
-            Returns the default microphone.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.All">
-            <summary>
-            Returns all compatible microphones.
-            </summary>
-        </member>
-        <member name="E:Microsoft.Xna.Framework.Audio.Microphone.BufferReady">
-            <summary>
-            Event fired when the audio data are available.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.Name">
-            <summary>
-            Returns the friendly name of the microphone.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.SampleRate">
-            <summary>
-            Returns the sample rate of the captured audio.
-            Note: default value is 44100hz
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.State">
-            <summary>
-            Returns the state of the Microphone. 
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.BufferDuration">
-            <summary>
-            Gets or sets the capture buffer duration. This value must be greater than 100 milliseconds, lower than 1000 milliseconds, and must be 10 milliseconds aligned (BufferDuration % 10 == 10).
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Microphone.IsHeadset">
-            <summary>
-            Determines if the microphone is a wired headset.
-            Note: XNA could know if a headset microphone was plugged in an Xbox 360 controller but MonoGame can't.
-            Hence, this is always true on mobile platforms, and always false otherwise.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleDuration(System.Int32)">
-            <summary>
-            Returns the duration based on the size of the buffer (assuming 16-bit PCM data).
-            </summary>
-            <param name="sizeInBytes">Size, in bytes</param>
-            <returns>TimeSpan of the duration.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetSampleSizeInBytes(System.TimeSpan)">
-            <summary>
-            Returns the size, in bytes, of the array required to hold the specified duration of 16-bit PCM data. 
-            </summary>
-            <param name="duration">TimeSpan of the duration of the sample.</param>
-            <returns>Size, in bytes, of the buffer.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.Start">
-            <summary>
-            Starts microphone capture.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.Stop">
-            <summary>
-            Stops microphone capture.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[])">
-            <summary>
-            Gets the latest available data from the microphone.
-            </summary>
-            <param name="buffer">Buffer, in bytes, of the captured data (16-bit PCM).</param>
-            <returns>The buffer size, in bytes, of the captured data.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Microphone.GetData(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Gets the latest available data from the microphone.
-            </summary>
-            <param name="buffer">Buffer, in bytes, of the captured data (16-bit PCM).</param>
-            <param name="offset">Byte offset.</param>
-            <param name="count">Amount, in bytes.</param>
-            <returns>The buffer size, in bytes, of the captured data.</returns>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException">
-            <summary>
-            The exception thrown when no audio hardware is present, or driver issues are detected.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String)">
-            <param name="msg">A message describing the error.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.NoMicrophoneConnectedException.#ctor(System.String,System.Exception)">
-            <param name="msg">A message describing the error.</param>
-            <param name="innerException">The exception that is the underlying cause of the current exception. If not null, the current exception is raised in a try/catch block that handled the innerException.</param>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.AudioCategory">
-            <summary>
-            Provides functionality for manipulating multiple sounds at a time.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioCategory.Name">
-            <summary>
-            Gets the category's friendly name.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Pause">
-            <summary>
-            Pauses all associated sounds.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Resume">
-            <summary>
-            Resumes all associated paused sounds.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Stop(Microsoft.Xna.Framework.Audio.AudioStopOptions)">
-            <summary>
-            Stops all associated sounds.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.op_Equality(Microsoft.Xna.Framework.Audio.AudioCategory,Microsoft.Xna.Framework.Audio.AudioCategory)">
-            <summary>
-            Determines whether two AudioCategory instances are equal.
-            </summary>
-            <param name="first">First AudioCategory instance to compare.</param>
-            <param name="second">Second AudioCategory instance to compare.</param>
-            <returns>true if the objects are equal or false if they aren't.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.op_Inequality(Microsoft.Xna.Framework.Audio.AudioCategory,Microsoft.Xna.Framework.Audio.AudioCategory)">
-            <summary>
-            Determines whether two AudioCategory instances are not equal.
-            </summary>
-            <param name="first">First AudioCategory instance to compare.</param>
-            <param name="second">Second AudioCategory instance to compare.</param>
-            <returns>true if the objects are not equal or false if they are.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Equals(Microsoft.Xna.Framework.Audio.AudioCategory)">
-            <summary>
-            Determines whether two AudioCategory instances are equal.
-            </summary>
-            <param name="other">AudioCategory to compare with this instance.</param>
-            <returns>true if the objects are equal or false if they aren't</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.Equals(System.Object)">
-            <summary>
-            Determines whether two AudioCategory instances are equal.
-            </summary>
-            <param name="obj">Object to compare with this instance.</param>
-            <returns>true if the objects are equal or false if they aren't.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.GetHashCode">
-            <summary>
-            Gets the hash code for this instance.
-            </summary>
-            <returns>Hash code for this object.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioCategory.ToString">
-            <summary>
-            Returns the name of this AudioCategory
-            </summary>
-            <returns>Friendly name of the AudioCategory</returns>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.AudioEngine">
-            <summary>
-            Class used to create and manipulate code audio objects.
-            </summary> 
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.AudioEngine.ContentVersion">
-            <summary>
-            The current content version.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.#ctor(System.String)">
-            <param name="settingsFile">Path to a XACT settings file.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.#ctor(System.String,System.TimeSpan,System.String)">
-            <param name="settingsFile">Path to a XACT settings file.</param>
-            <param name="lookAheadTime">Determines how many milliseconds the engine will look ahead when determing when to transition to another sound.</param>
-            <param name="rendererId">A string that specifies the audio renderer to use.</param>
-            <remarks>For the best results, use a lookAheadTime of 250 milliseconds or greater.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.Update">
-            <summary>
-            Performs periodic work required by the audio engine.
-            </summary>
-            <remarks>Must be called at least once per frame.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.GetCategory(System.String)">
-            <summary>Returns an audio category by name.</summary>
-            <param name="name">Friendly name of the category to get.</param>
-            <returns>The AudioCategory with a matching name. Throws an exception if not found.</returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.GetGlobalVariable(System.String)">
-            <summary>Gets the value of a global variable.</summary>
-            <param name="name">Friendly name of the variable.</param>
-            <returns>float value of the queried variable.</returns>
-            <remarks>A global variable has global scope. It can be accessed by all code within a project.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.SetGlobalVariable(System.String,System.Single)">
-            <summary>Sets the value of a global variable.</summary>
-            <param name="name">Friendly name of the variable.</param>
-            <param name="value">Value of the global variable.</param>
-        </member>
-        <member name="E:Microsoft.Xna.Framework.Audio.AudioEngine.Disposing">
-            <summary>
-            This event is triggered when the AudioEngine is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.AudioEngine.IsDisposed">
-            <summary>
-            Is true if the AudioEngine has been disposed.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioEngine.Dispose">
-            <summary>
-            Disposes the AudioEngine.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.AudioStopOptions">
-            <summary>Controls how Cue objects should cease playback when told to stop.</summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.AudioStopOptions.AsAuthored">
-            <summary>Stop normally, playing any pending release phases or transitions.</summary>
-        </member>
-        <member name="F:Microsoft.Xna.Framework.Audio.AudioStopOptions.Immediate">
-            <summary>Immediately stops the cue, ignoring any pending release phases or transitions.</summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.Cue">
-            <summary>Manages the playback of a sound or set of sounds.</summary>
-            <remarks>
-            <para>Cues are comprised of one or more sounds.</para>
-            <para>Cues also define specific properties such as pitch or volume.</para>
-            <para>Cues are referenced through SoundBank objects.</para>
-            </remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsPaused">
-            <summary>Indicates whether or not the cue is currently paused.</summary>
-            <remarks>IsPlaying and IsPaused both return true if a cue is paused while playing.</remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsPlaying">
-            <summary>Indicates whether or not the cue is currently playing.</summary>
-            <remarks>IsPlaying and IsPaused both return true if a cue is paused while playing.</remarks>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsStopped">
-            <summary>Indicates whether or not the cue is currently stopped.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Cue.Name">
-            <summary>Gets the friendly name of the cue.</summary>
-            <remarks>The friendly name is a value set from the designer.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Pause">
-            <summary>Pauses playback.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Play">
-            <summary>Requests playback of a prepared or preparing Cue.</summary>
-            <remarks>Calling Play when the Cue already is playing can result in an InvalidOperationException.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Resume">
-            <summary>Resumes playback of a paused Cue.</summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Stop(Microsoft.Xna.Framework.Audio.AudioStopOptions)">
-            <summary>Stops playback of a Cue.</summary>
-            <param name="options">Specifies if the sound should play any pending release phases or transitions before stopping.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.SetVariable(System.String,System.Single)">
-            <summary>
-            Sets the value of a cue-instance variable based on its friendly name.
-            </summary>
-            <param name="name">Friendly name of the variable to set.</param>
-            <param name="value">Value to assign to the variable.</param>
-            <remarks>The friendly name is a value set from the designer.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.GetVariable(System.String)">
-            <summary>Gets a cue-instance variable value based on its friendly name.</summary>
-            <param name="name">Friendly name of the variable.</param>
-            <returns>Value of the variable.</returns>
-            <remarks>
-            <para>Cue-instance variables are useful when multiple instantiations of a single cue (and its associated sounds) are required (for example, a "car" cue where there may be more than one car at any given time). While a global variable allows multiple audio elements to be controlled in unison, a cue instance variable grants discrete control of each instance of a cue, even for each copy of the same cue.</para>
-            <para>The friendly name is a value set from the designer.</para>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
-            <summary>Updates the simulated 3D Audio settings calculated between an AudioEmitter and AudioListener.</summary>
-            <param name="listener">The listener to calculate.</param>
-            <param name="emitter">The emitter to calculate.</param>
-            <remarks>
-            <para>This must be called before Play().</para>
-            <para>Calling this method automatically converts the sound to monoaural and sets the speaker mix for any sound played by this cue to a value calculated with the listener's and emitter's positions. Any stereo information in the sound will be discarded.</para>
-            </remarks>
-        </member>
-        <member name="E:Microsoft.Xna.Framework.Audio.Cue.Disposing">
-            <summary>
-            This event is triggered when the Cue is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.Cue.IsDisposed">
-            <summary>
-            Is true if the Cue has been disposed.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.Cue.Dispose">
-            <summary>
-            Disposes the Cue.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.SoundBank">
-            <summary>Represents a collection of Cues.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundBank.IsInUse">
-            <summary>
-            Is true if the SoundBank has any live Cues in use.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.#ctor(Microsoft.Xna.Framework.Audio.AudioEngine,System.String)">
-            <param name="audioEngine">AudioEngine that will be associated with this sound bank.</param>
-            <param name="fileName">Path to a .xsb SoundBank file.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.GetCue(System.String)">
-            <summary>
-            Returns a pooled Cue object.
-            </summary>
-            <param name="name">Friendly name of the cue to get.</param>
-            <returns>a unique Cue object from a pool.</returns>
-            <remarks>
-            <para>Cue instances are unique, even when sharing the same name. This allows multiple instances to simultaneously play.</para>
-            </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.PlayCue(System.String)">
-            <summary>
-            Plays a cue.
-            </summary>
-            <param name="name">Name of the cue to play.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.PlayCue(System.String,Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)">
-            <summary>
-            Plays a cue with static 3D positional information.
-            </summary>
-            <remarks>
-            Commonly used for short lived effects.  To dynamically change the 3D 
-            positional information on a cue over time use <see cref="M:Microsoft.Xna.Framework.Audio.SoundBank.GetCue(System.String)"/> and <see cref="M:Microsoft.Xna.Framework.Audio.Cue.Apply3D(Microsoft.Xna.Framework.Audio.AudioListener,Microsoft.Xna.Framework.Audio.AudioEmitter)"/>.</remarks>
-            <param name="name">The name of the cue to play.</param>
-            <param name="listener">The listener state.</param>
-            <param name="emitter">The cue emitter state.</param>
-        </member>
-        <member name="E:Microsoft.Xna.Framework.Audio.SoundBank.Disposing">
-            <summary>
-            This event is triggered when the SoundBank is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.SoundBank.IsDisposed">
-            <summary>
-            Is true if the SoundBank has been disposed.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundBank.Dispose">
-            <summary>
-            Disposes the SoundBank.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Audio.WaveBank">
-            <summary>Represents a collection of wave files.</summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.WaveBank.IsInUse">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.WaveBank.IsPrepared">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.WaveBank.#ctor(Microsoft.Xna.Framework.Audio.AudioEngine,System.String)">
-            <param name="audioEngine">Instance of the AudioEngine to associate this wave bank with.</param>
-            <param name="nonStreamingWaveBankFilename">Path to the .xwb file to load.</param>
-            <remarks>This constructor immediately loads all wave data into memory at once.</remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.WaveBank.#ctor(Microsoft.Xna.Framework.Audio.AudioEngine,System.String,System.Int32,System.Int16)">
-            <param name="audioEngine">Instance of the AudioEngine to associate this wave bank with.</param>
-            <param name="streamingWaveBankFilename">Path to the .xwb to stream from.</param>
-            <param name="offset">DVD sector-aligned offset within the wave bank data file.</param>
-            <param name="packetsize">Stream packet size, in sectors, to use for each stream. The minimum value is 2.</param>
-            <remarks>
-            <para>This constructor streams wave data as needed.</para>
-            <para>Note that packetsize is in sectors, which is 2048 bytes.</para>
-            <para>AudioEngine.Update() must be called at least once before using data from a streaming wave bank.</para>
-            </remarks>
-        </member>
-        <member name="E:Microsoft.Xna.Framework.Audio.WaveBank.Disposing">
-            <summary>
-            This event is triggered when the WaveBank is disposed.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Audio.WaveBank.IsDisposed">
-            <summary>
-            Is true if the WaveBank has been disposed.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.WaveBank.Dispose">
-            <summary>
-            Disposes the WaveBank.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.XactClip.SetVolumeScale(System.Single)">
-            <summary>
-            Set the combined volume scale from the parent objects.
-            </summary>
-            <param name="volume">The volume scale.</param>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.XactClip.SetVolume(System.Single)">
-            <summary>
-            Set the volume for the clip.
-            </summary>
-            <param name="volume">The volume level.</param>
         </member>
         <member name="P:Microsoft.Xna.Framework.Content.ContentManager.LoadedAssets">
             <summary>
@@ -19558,42 +19317,43 @@
             Gets whether the stream has been clipped since the last reset
             </summary>
         </member>
-        <member name="T:NVorbis.NewStreamEventArgs">
+        <member name="T:NVorbis.NewStreamEvent">
             <summary>
             Event data for when a new logical stream is found in a container.
             </summary>
         </member>
-        <member name="M:NVorbis.NewStreamEventArgs.#ctor(NVorbis.IPacketProvider)">
-            <summary>
-            Creates a new instance of <see cref="T:NVorbis.NewStreamEventArgs"/> with the specified <see cref="T:NVorbis.IPacketProvider"/>.
-            </summary>
-            <param name="packetProvider">An <see cref="T:NVorbis.IPacketProvider"/> instance.</param>
-        </member>
-        <member name="P:NVorbis.NewStreamEventArgs.PacketProvider">
+        <member name="P:NVorbis.NewStreamEvent.PacketProvider">
             <summary>
             Gets new the <see cref="T:NVorbis.IPacketProvider"/> instance.
             </summary>
         </member>
-        <member name="P:NVorbis.NewStreamEventArgs.IgnoreStream">
+        <member name="P:NVorbis.NewStreamEvent.IgnoreStream">
             <summary>
             Gets or sets whether to ignore the logical stream associated with the packet provider.
             </summary>
         </member>
-        <member name="T:NVorbis.ParameterChangeEventArgs">
+        <member name="M:NVorbis.NewStreamEvent.#ctor(NVorbis.IPacketProvider)">
+            <summary>
+            Creates a new instance of <see cref="T:NVorbis.NewStreamEvent"/> with the specified <see cref="T:NVorbis.IPacketProvider"/>.
+            </summary>
+            <param name="packetProvider">An <see cref="T:NVorbis.IPacketProvider"/> instance.</param>
+        </member>
+        <member name="T:NVorbis.ParameterChangeEvent">
             <summary>
             Event data for when a logical stream has a parameter change.
             </summary>
         </member>
-        <member name="M:NVorbis.ParameterChangeEventArgs.#ctor(NVorbis.DataPacket)">
+        <member name="P:NVorbis.ParameterChangeEvent.FirstPacket">
             <summary>
-            Creates a new instance of <see cref="T:NVorbis.ParameterChangeEventArgs"/>.
+            Gets the first packet after the parameter change.
+            This would typically be the parameters packet.
+            </summary>
+        </member>
+        <member name="M:NVorbis.ParameterChangeEvent.#ctor(NVorbis.DataPacket)">
+            <summary>
+            Creates a new instance of <see cref="T:NVorbis.ParameterChangeEvent"/>.
             </summary>
             <param name="firstPacket">The first packet after the parameter change.</param>
-        </member>
-        <member name="P:NVorbis.ParameterChangeEventArgs.FirstPacket">
-            <summary>
-            Gets the first packet after the parameter change.  This would typically be the parameters packet.
-            </summary>
         </member>
         <member name="P:NVorbis.StreamReadBuffer.MinimalRead">
             <summary>
@@ -19683,7 +19443,7 @@
         </member>
         <member name="P:NVorbis.VorbisReader.ClipSamples">
             <summary>
-            Gets or sets whether to automatically apply clipping to samples returned by <see cref="M:NVorbis.VorbisReader.ReadSamples(System.Single[],System.Int32,System.Int32)"/>.
+            Gets or sets whether to automatically apply clipping to samples returned by <see cref="M:NVorbis.VorbisReader.ReadSamples(System.Span{System.Single})"/>.
             </summary>
         </member>
         <member name="P:NVorbis.VorbisReader.Stats">
@@ -19696,13 +19456,11 @@
             Gets the currently-selected stream's index
             </summary>
         </member>
-        <member name="M:NVorbis.VorbisReader.ReadSamples(System.Single[],System.Int32,System.Int32)">
+        <member name="M:NVorbis.VorbisReader.ReadSamples(System.Span{System.Single})">
             <summary>
             Reads decoded samples from the current logical stream
             </summary>
-            <param name="buffer">The buffer to write the samples to</param>
-            <param name="offset">The offset into the buffer to write the samples to</param>
-            <param name="count">The number of samples to write</param>
+            <param name="buffer">The buffer to write the samples to.</param>
             <returns>The number of samples written</returns>
         </member>
         <member name="M:NVorbis.VorbisReader.ClearParameterChange">
@@ -19769,7 +19527,7 @@
             Creates a new instance with the specified stream.  Optionally sets to close the stream when disposed.
             </summary>
             <param name="stream">The stream to read.</param>
-            <param name="closeOnDispose"><c>True</c> to close the stream when <see cref="M:NVorbis.Ogg.OggContainerReader.Dispose"/> is called, otherwise <c>False</c>.</param>
+            <param name="leaveOpen"><c>false</c> to close the stream when <see cref="M:NVorbis.Ogg.OggContainerReader.Dispose"/> is called, otherwise <c>true</c>.</param>
         </member>
         <member name="M:NVorbis.Ogg.OggContainerReader.Init">
             <summary>
