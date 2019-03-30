@@ -458,7 +458,7 @@
             Read 1-8 bits from a buffer into a byte
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetBitWriter.ReadBytes(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+        <member name="M:Lidgren.Network.NetBitWriter.ReadBytes(System.Byte[],System.Int32,System.Span{System.Byte})">
             <summary>
             Read bytes from a buffer
             </summary>
@@ -468,7 +468,7 @@
             Write 0-8 bits of data to buffer
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetBitWriter.WriteBytes(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+        <member name="M:Lidgren.Network.NetBitWriter.WriteBytes(System.ReadOnlySpan{System.Byte},System.Byte[],System.Int32)">
             <summary>
             Write several whole bytes
             </summary>
@@ -574,7 +574,7 @@
             Reads the specified number of bytes without advancing the read pointer
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetBuffer.PeekBytes(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:Lidgren.Network.NetBuffer.PeekBytes(System.Span{System.Byte})">
             <summary>
             Reads the specified number of bytes without advancing the read pointer
             </summary>
@@ -679,23 +679,16 @@
             Reads 1 to 8 bits into a byte
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetBuffer.ReadBytes(System.Int32)">
-            <summary>
-            Reads the specified number of bytes
-            </summary>
-        </member>
         <member name="M:Lidgren.Network.NetBuffer.ReadBytes(System.Int32,System.Byte[]@)">
             <summary>
             Reads the specified number of bytes and returns true for success
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetBuffer.ReadBytes(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:Lidgren.Network.NetBuffer.Read(System.Span{System.Byte})">
             <summary>
-            Reads the specified number of bytes into a preallocated array
+            Reads a block of bytes from the stream and writes the data in a given buffer.
             </summary>
-            <param name="into">The destination array</param>
-            <param name="offset">The offset where to start writing in the destination array</param>
-            <param name="numberOfBytes">The number of bytes to read</param>
+            <param name="span">The destination span.</param>
         </member>
         <member name="M:Lidgren.Network.NetBuffer.Read(System.Byte[],System.Int32,System.Int32)">
             <summary>
@@ -705,7 +698,7 @@
             <param name="offset">The offset where to start writing in the destination buffer.</param>
             <param name="count">The number of bytes to read.</param>
         </member>
-        <member name="M:Lidgren.Network.NetBuffer.ReadBits(System.Byte[],System.Int32,System.Int32)">
+        <member name="M:Lidgren.Network.NetBuffer.ReadBits(System.Span{System.Byte},System.Int32)">
             <summary>
             Reads the specified number of bits into a preallocated array
             </summary>
@@ -866,7 +859,7 @@
         </member>
         <member name="M:Lidgren.Network.NetBuffer.ReadIPEndPoint">
             <summary>
-            Reads a stored IPv4 endpoint description
+            Reads a stored endpoint description
             </summary>
         </member>
         <member name="M:Lidgren.Network.NetBuffer.SkipPadBits">
@@ -934,9 +927,9 @@
             Writes 1 to 8 bits of a byte
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetBuffer.Write(System.Byte[])">
+        <member name="M:Lidgren.Network.NetBuffer.Write(System.ReadOnlySpan{System.Byte})">
             <summary>
-            Writes all bytes in an array
+            Writes all bytes in a span
             </summary>
         </member>
         <member name="M:Lidgren.Network.NetBuffer.Write(System.Byte[],System.Int32,System.Int32)">
@@ -2491,6 +2484,11 @@
         <member name="M:Lidgren.Network.NetUtility.IsLocal(System.Net.IPAddress)">
             <summary>
             Returns true if the IPAddress supplied is on the same subnet as this host.
+            </summary>
+        </member>
+        <member name="M:Lidgren.Network.NetUtility.BitsToHoldUInt64(System.UInt64)">
+            <summary>
+            Returns how many bits are necessary to hold a certain number
             </summary>
         </member>
         <member name="M:Lidgren.Network.NetUtility.BitsToHoldUInt(System.UInt32)">
