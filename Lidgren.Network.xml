@@ -210,12 +210,12 @@
             Gets or sets the application defined object containing data about the peer
             </summary>
         </member>
-        <member name="P:Lidgren.Network.NetPeer.Connections">
+        <member name="M:Lidgren.Network.NetPeer.GetConnections">
             <summary>
-            Gets a copy of the list of connections
+            Gets a copy of the list of connections.
             </summary>
         </member>
-        <member name="P:Lidgren.Network.NetPeer.ConnectionsCount">
+        <member name="P:Lidgren.Network.NetPeer.ConnectionCount">
             <summary>
             Gets the number of active connections
             </summary>
@@ -353,7 +353,7 @@
             <param name="method">How to deliver the message</param>
             <param name="sequenceChannel">Sequence channel within the delivery method</param>
         </member>
-        <member name="M:Lidgren.Network.NetPeer.SendMessage(Lidgren.Network.NetOutgoingMessage,System.Collections.Generic.ICollection{Lidgren.Network.NetConnection},Lidgren.Network.NetDeliveryMethod,System.Int32)">
+        <member name="M:Lidgren.Network.NetPeer.SendMessage(Lidgren.Network.NetOutgoingMessage,System.Collections.Generic.List{Lidgren.Network.NetConnection},Lidgren.Network.NetDeliveryMethod,System.Int32)">
             <summary>
             Send a message to a list of connections
             </summary>
@@ -2250,12 +2250,13 @@
             NetServer constructor
             </summary>
         </member>
-        <member name="M:Lidgren.Network.NetServer.SendToAll(Lidgren.Network.NetOutgoingMessage,Lidgren.Network.NetDeliveryMethod)">
+        <member name="M:Lidgren.Network.NetServer.SendToAll(Lidgren.Network.NetOutgoingMessage,Lidgren.Network.NetDeliveryMethod,System.Int32)">
             <summary>
             Send a message to all connections
             </summary>
             <param name="msg">The message to send</param>
             <param name="method">How to deliver the message</param>
+            <param name="sequenceChannel">Which sequence channel to use for the message</param>
         </member>
         <member name="M:Lidgren.Network.NetServer.SendToAll(Lidgren.Network.NetOutgoingMessage,Lidgren.Network.NetConnection,Lidgren.Network.NetDeliveryMethod,System.Int32)">
             <summary>
