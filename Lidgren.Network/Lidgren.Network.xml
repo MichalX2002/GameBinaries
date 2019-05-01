@@ -4,31 +4,6 @@
         <name>Lidgren.Network</name>
     </assembly>
     <members>
-        <member name="T:Lidgren.Network.NetEncryption">
-            <summary>
-            Interface for an encryption algorithm
-            </summary>
-        </member>
-        <member name="F:Lidgren.Network.NetEncryption.m_peer">
-            <summary>
-            NetPeer
-            </summary>
-        </member>
-        <member name="M:Lidgren.Network.NetEncryption.#ctor(Lidgren.Network.NetPeer)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:Lidgren.Network.NetEncryption.Encrypt(Lidgren.Network.NetOutgoingMessage)">
-            <summary>
-            Encrypt an outgoing message in place
-            </summary>
-        </member>
-        <member name="M:Lidgren.Network.NetEncryption.Decrypt(Lidgren.Network.NetIncomingMessage)">
-            <summary>
-            Decrypt an incoming message in place
-            </summary>
-        </member>
         <member name="T:Lidgren.Network.NetBlockEncryptionBase">
             <summary>
             Base for a non-threadsafe encryption class
@@ -64,6 +39,31 @@
         <member name="M:Lidgren.Network.NetBlockEncryptionBase.DecryptBlock(System.Byte[],System.Int32,System.Byte[])">
             <summary>
             Decrypt a block of bytes
+            </summary>
+        </member>
+        <member name="T:Lidgren.Network.NetEncryption">
+            <summary>
+            Interface for an encryption algorithm
+            </summary>
+        </member>
+        <member name="F:Lidgren.Network.NetEncryption.m_peer">
+            <summary>
+            NetPeer
+            </summary>
+        </member>
+        <member name="M:Lidgren.Network.NetEncryption.#ctor(Lidgren.Network.NetPeer)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Lidgren.Network.NetEncryption.Encrypt(Lidgren.Network.NetOutgoingMessage)">
+            <summary>
+            Encrypt an outgoing message in place
+            </summary>
+        </member>
+        <member name="M:Lidgren.Network.NetEncryption.Decrypt(Lidgren.Network.NetIncomingMessage)">
+            <summary>
+            Decrypt an incoming message in place
             </summary>
         </member>
         <member name="T:Lidgren.Network.NetXorEncryption">
@@ -380,6 +380,11 @@
         <member name="M:Lidgren.Network.NetPeer.SendUnconnectedToSelf(Lidgren.Network.NetOutgoingMessage)">
             <summary>
             Send a message to this exact same netpeer (loopback)
+            </summary>
+        </member>
+        <member name="T:Lidgren.Network.NamespaceDoc">
+            <summary>
+            Lidgren Network Library
             </summary>
         </member>
         <member name="T:Lidgren.Network.NetBigInteger">
@@ -702,8 +707,7 @@
             <summary>
             Reads the specified number of bits into a preallocated array
             </summary>
-            <param name="into">The destination array</param>
-            <param name="offset">The offset where to start writing in the destination array</param>
+            <param name="span">The destination span.</param>
             <param name="numberOfBits">The number of bits to read</param>
         </member>
         <member name="M:Lidgren.Network.NetBuffer.ReadInt16">
@@ -1141,6 +1145,21 @@
         <member name="F:Lidgren.Network.SingleUIntUnion.UIntValue">
             <summary>
             Value as an unsigned 32 bit integer
+            </summary>
+        </member>
+        <member name="T:Lidgren.Network.DoubleULongUnion">
+            <summary>
+            Utility struct for writing Doubles
+            </summary>
+        </member>
+        <member name="F:Lidgren.Network.DoubleULongUnion.DoubleValue">
+            <summary>
+            Value as a 64 bit float
+            </summary>
+        </member>
+        <member name="F:Lidgren.Network.DoubleULongUnion.ULongValue">
+            <summary>
+            Value as an unsigned 64 bit integer
             </summary>
         </member>
         <member name="T:Lidgren.Network.NetClient">
@@ -1701,7 +1720,7 @@
         </member>
         <member name="P:Lidgren.Network.NetPeerConfiguration.DefaultOutgoingMessageCapacity">
             <summary>
-            Gets or sets the default capacity in bytes when <see cref="M:Lidgren.Network.NetPeer.CreateMessage"/> is called without argument.
+            Gets or sets the default capacity for messages created by <see cref="M:Lidgren.Network.NetPeer.CreateMessage"/>.
             </summary>
         </member>
         <member name="P:Lidgren.Network.NetPeerConfiguration.PingInterval">
