@@ -2929,6 +2929,22 @@
             </summary>
             <typeparam name="T">The type of content to load</typeparam>
         </member>
+        <member name="M:MonoGame.Extended.ShapeExtensions.Intersects(Microsoft.Xna.Framework.IShapeF,Microsoft.Xna.Framework.IShapeF)">
+            <summary>
+                Check if two shapes intersect.
+            </summary>
+            <param name="a">The first shape.</param>
+            <param name="b">The second shape.</param>
+            <returns>True if the two shapes intersect.</returns>
+        </member>
+        <member name="M:MonoGame.Extended.ShapeExtensions.Intersects(MonoGame.Extended.CircleF,Microsoft.Xna.Framework.RectangleF)">
+            <summary>
+                Checks if a circle and rectangle intersect.
+            </summary>
+            <param name="circ">Circle to check intersection with rectangle.</param>
+            <param name="rect">Rectangle to check intersection with circle.</param>
+            <returns>True if the circle and rectangle intersect.</returns>
+        </member>
         <member name="T:MonoGame.Extended.ShapeDrawingExtensions">
             <summary>
             <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteBatch"/> extensions for drawing primitive shapes.
@@ -3084,22 +3100,6 @@
             <param name="sides">The number of sides to generate</param>
             <param name="color">The color of the circle</param>
             <param name="thickness">The thickness of the lines used</param>
-        </member>
-        <member name="M:MonoGame.Extended.ShapeExtensions.Intersects(Microsoft.Xna.Framework.IShapeF,Microsoft.Xna.Framework.IShapeF)">
-            <summary>
-                Check if two shapes intersect.
-            </summary>
-            <param name="a">The first shape.</param>
-            <param name="b">The second shape.</param>
-            <returns>True if the two shapes intersect.</returns>
-        </member>
-        <member name="M:MonoGame.Extended.ShapeExtensions.Intersects(MonoGame.Extended.CircleF,Microsoft.Xna.Framework.RectangleF)">
-            <summary>
-                Checks if a circle and rectangle intersect.
-            </summary>
-            <param name="circ">Circle to check intersection with rectangle.</param>
-            <param name="rect">Rectangle to check intersection with circle.</param>
-            <returns>True if the circle and rectangle intersect.</returns>
         </member>
         <member name="T:MonoGame.Extended.TextureAtlases.TextureAtlas">
             <summary>
