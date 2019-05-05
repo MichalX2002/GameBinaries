@@ -4,6 +4,20 @@
         <name>MonoGame.Framework</name>
     </assembly>
     <members>
+        <member name="M:Microsoft.Xna.Framework.Audio.AudioLoader.Load(System.IO.Stream,Microsoft.Xna.Framework.Audio.ALFormat@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            Decode audio samples from stream.
+            </summary>
+            <param name="stream">The stream positioned at the start of the WAV file.</param>
+            <param name="format">Gets the OpenAL format enumeration value.</param>
+            <param name="frequency">Gets the frequency or sample rate.</param>
+            <param name="channels">Gets the number of channels.</param>
+            <param name="blockAlignment">Gets the block alignment, important for compressed sounds.</param>
+            <param name="bitsPerSample">Gets the number of bits per sample.</param>
+            <param name="samplesPerBlock">Gets the number of samples per block.</param>
+            <param name="sampleCount">Gets the total number of samples.</param>
+            <returns>The byte buffer containing the waveform data or compressed blocks.</returns>
+        </member>
         <member name="T:Microsoft.Xna.Framework.Audio.AudioChannels">
             <summary>
             Represents how many channels are used in the audio data.
@@ -91,20 +105,6 @@
             <para>Scaled by DopplerScale to calculate the Doppler effect value applied to a Cue.</para>
             <para>This value is only used to calculate Doppler values.</para>
             </remarks>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.AudioLoader.Load(System.IO.Stream,Microsoft.Xna.Framework.Audio.ALFormat@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
-            <summary>
-            Load a WAV file from stream.
-            </summary>
-            <param name="stream">The stream positioned at the start of the WAV file.</param>
-            <param name="format">Gets the OpenAL format enumeration value.</param>
-            <param name="frequency">Gets the frequency or sample rate.</param>
-            <param name="channels">Gets the number of channels.</param>
-            <param name="blockAlignment">Gets the block alignment, important for compressed sounds.</param>
-            <param name="bitsPerSample">Gets the number of bits per sample.</param>
-            <param name="samplesPerBlock">Gets the number of samples per block.</param>
-            <param name="sampleCount">Gets the total number of samples.</param>
-            <returns>The byte buffer containing the waveform data or compressed blocks.</returns>
         </member>
         <member name="T:Microsoft.Xna.Framework.Audio.DynamicSoundEffectInstance">
             <summary>
@@ -263,10 +263,11 @@
         </member>
         <member name="T:Microsoft.Xna.Framework.Audio.InstancePlayLimitException">
             <summary>
-            The exception thrown when the system attempts to play more SoundEffectInstances than allotted.
+            The exception thrown when the system attempts to play more SoundEffectInstances than allowed.
             </summary>
             <remarks>
-            Most platforms have a hard limit on how many sounds can be played simultaneously. This exception is thrown when that limit is exceeded.
+            Most platforms have a hard limit on how many sounds can be played simultaneously. 
+            This exception is thrown when that limit is exceeded.
             </remarks>
         </member>
         <member name="T:Microsoft.Xna.Framework.Audio.NoAudioHardwareException">
@@ -367,7 +368,10 @@
             Creates a new SoundEffectInstance for this SoundEffect.
             </summary>
             <returns>A new SoundEffectInstance for this SoundEffect.</returns>
-            <remarks>Creating a SoundEffectInstance before calling SoundEffectInstance.Play() allows you to access advanced playback features, such as volume, pitch, and 3D positioning.</remarks>
+            <remarks>
+            Creating a SoundEffectInstance before calling SoundEffectInstance.Play()
+            allows you to access advanced playback features, such as volume, pitch, and 3D positioning.
+            </remarks>
         </member>
         <member name="M:Microsoft.Xna.Framework.Audio.SoundEffect.FromStream(System.IO.Stream)">
             <summary>
@@ -504,16 +508,15 @@
             <summary>Gets the SoundEffectInstance's current playback state.</summary>
         </member>
         <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.IsLooped">
-            <summary>Enables or Disables whether the SoundEffectInstance should repeat after playback.</summary>
+            <summary>Enables or Disables whether the <see cref="T:Microsoft.Xna.Framework.Audio.SoundEffectInstance"/> should repeat after playback.</summary>
             <remarks>This value has no effect on an already playing sound.</remarks>
         </member>
         <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pan">
-            <summary>Gets or sets the pan, or speaker balance..</summary>
+            <summary>Gets or sets the pan, or speaker balance.</summary>
             <value>Pan value ranging from -1.0 (left speaker) to 0.0 (centered), 1.0 (right speaker). Values outside of this range will throw an exception.</value>
         </member>
         <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Pitch">
             <summary>Gets or sets the pitch adjustment.</summary>
-            <value>Pitch adjustment, ranging from -1.0 (down an octave) to 0.0 (no change) to 1.0 (up an octave). Values outside of this range will throw an Exception.</value>
         </member>
         <member name="P:Microsoft.Xna.Framework.Audio.SoundEffectInstance.Volume">
             <summary>Gets or sets the volume of the SoundEffectInstance.</summary>
@@ -586,14 +589,14 @@
             </summary>
             <value><c>true</c> if more sounds can be played; otherwise, <c>false</c>.</value>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Add(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Return(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
             <summary>
             Add the specified instance to the pool if it is a pooled instance and removes it from the
             list of playing instances.
             </summary>
             <param name="inst">The SoundEffectInstance</param>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.Remove(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
+        <member name="M:Microsoft.Xna.Framework.Audio.SoundEffectInstancePool.AddToPlaying(Microsoft.Xna.Framework.Audio.SoundEffectInstance)">
             <summary>
             Adds the SoundEffectInstance to the list of playing instances.
             </summary>
@@ -1055,6 +1058,104 @@
             Set the volume for the clip.
             </summary>
             <param name="volume">The volume level.</param>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Content.ContentManager.LoadedAssets">
+            <summary>
+            Virtual property to allow a derived ContentManager to have it's assets reloaded
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Content.ExternalReferenceReader">
+            <summary>
+            External reference reader, provided for compatibility with XNA Framework built content
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor">
+            <summary>
+            Creates an instance of the attribute.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.CollectionItemName">
+            <summary>
+            Returns the overriden XML element name or the default "Item".
+            </summary>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.HasCollectionItemName">
+            <summary>
+            Returns true if the default CollectionItemName value was overridden.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Content.ContentSerializerCollectionItemNameAttribute">
+            <summary>
+            This is used to specify the XML element name to use for each item in a collection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerCollectionItemNameAttribute.#ctor(System.String)">
+            <summary>
+            Creates an instance of the attribute.
+            </summary>
+            <param name="collectionItemName">The XML element name to use for each item in the collection.</param>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerCollectionItemNameAttribute.CollectionItemName">
+            <summary>
+            The XML element name to use for each item in the collection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Content.ContentSerializerRuntimeTypeAttribute">
+            <summary>
+            This is used to specify the type to use when deserializing this object at runtime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerRuntimeTypeAttribute.#ctor(System.String)">
+            <summary>
+            Creates an instance of the attribute.
+            </summary>
+            <param name="runtimeType">The name of the type to use at runtime.</param>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerRuntimeTypeAttribute.RuntimeType">
+            <summary>
+            The name of the type to use at runtime.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute">
+            <summary>
+            This is used to specify the version when deserializing this object at runtime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.#ctor(System.Int32)">
+            <summary>
+            Creates an instance of the attribute.
+            </summary>
+            <param name="typeVersion">The version passed to the type at runtime.</param>
+        </member>
+        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.TypeVersion">
+            <summary>
+            The version passed to the type at runtime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.PrepareType(System.String)">
+            <summary>
+            Removes Version, Culture and PublicKeyToken from a type string.
+            </summary>
+            <remarks>
+            Supports multiple generic types (e.g. Dictionary&lt;TKey,TValue&gt;) and nested generic types (e.g. List&lt;List&lt;int&gt;&gt;).
+            </remarks> 
+            <param name="type">
+            A <see cref="T:System.String"/>
+            </param>
+            <returns>
+            A <see cref="T:System.String"/>
+            </returns>
+        </member>
+        <member name="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.AddTypeCreator(System.String,System.Func{Microsoft.Xna.Framework.Content.ContentTypeReader})">
+            <summary>
+            Adds the type creator.
+            </summary>
+            <param name='typeString'>
+            Type string.
+            </param>
+            <param name='createFunction'>
+            Create function.
+            </param>
         </member>
         <member name="T:Microsoft.Xna.Framework.IShapeF">
             <summary>
@@ -1741,6 +1842,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Microsoft.Xna.Framework.Size.ToVector2">
+            <summary>
+            Gets a two-component <see cref="T:Microsoft.Xna.Framework.Vector2"/> representation for this object.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Microsoft.Xna.Framework.Size.op_Equality(Microsoft.Xna.Framework.Size,Microsoft.Xna.Framework.Size)">
             <summary>
                 Compares two <see cref="T:Microsoft.Xna.Framework.Size" /> structures. The result specifies
@@ -1936,6 +2043,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Microsoft.Xna.Framework.SizeF.ToSize">
+            <summary>
+            Gets a two-component <see cref="T:Microsoft.Xna.Framework.Size"/> representation for this object.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Microsoft.Xna.Framework.SizeF.op_Equality(Microsoft.Xna.Framework.SizeF,Microsoft.Xna.Framework.SizeF)">
             <summary>
                 Compares two <see cref="T:Microsoft.Xna.Framework.SizeF" /> structures. The result specifies
@@ -2078,6 +2191,15 @@
                 The resulting <see cref="T:Microsoft.Xna.Framework.SizeF" />.
             </returns>
         </member>
+        <member name="M:Microsoft.Xna.Framework.SizeF.op_Explicit(Microsoft.Xna.Framework.SizeF)~Microsoft.Xna.Framework.Size">
+            <summary>
+                Performs an implicit conversion from a <see cref="T:Microsoft.Xna.Framework.SizeF" /> to a <see cref="T:Microsoft.Xna.Framework.Size" />.
+            </summary>
+            <param name="size">The vector.</param>
+            <returns>
+                The resulting <see cref="T:Microsoft.Xna.Framework.SizeF" />.
+            </returns>
+        </member>
         <member name="M:Microsoft.Xna.Framework.SizeF.op_Explicit(Microsoft.Xna.Framework.SizeF)~Microsoft.Xna.Framework.Point">
             <summary>
                 Performs an explicit conversion from a <see cref="T:Microsoft.Xna.Framework.SizeF" /> to a <see cref="T:Microsoft.Xna.Framework.Point" />.
@@ -2095,12 +2217,12 @@
                 A <see cref="T:System.String" /> that represents this <see cref="T:Microsoft.Xna.Framework.SizeF" />.
             </returns>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Media.Song.FromUri(System.String,System.Uri)">
+        <member name="M:Microsoft.Xna.Framework.Media.Song.FromUri(System.Uri,System.String)">
             <summary>
-            Returns a song that can be played.
+            Creates a <see cref="T:Microsoft.Xna.Framework.Media.Song"/> that can be played by streaming the resource.
             </summary>
-            <param name="name">The name for the song. See <see cref="P:Microsoft.Xna.Framework.Media.Song.Name"/>.</param>
             <param name="uri">The path to the song file.</param>
+            <param name="name">The name for the song. See <see cref="P:Microsoft.Xna.Framework.Media.Song.Name"/>.</param>
             <returns></returns>
         </member>
         <member name="T:Microsoft.Xna.Framework.Graphics.SpriteBatch">
@@ -6045,7 +6167,7 @@
             <exception cref="T:System.ArgumentNullException">Throws if <paramref name="data"/> is null.</exception>
             <exception cref="T:System.ArgumentException">Throws if the GraphicsDevice does not support texture arrays.</exception>
         </member>
-        <member name="M:Microsoft.Xna.Framework.Graphics.Texture2D.FromStream(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.IO.Stream)">
+        <member name="M:Microsoft.Xna.Framework.Graphics.Texture2D.FromStream(Microsoft.Xna.Framework.Graphics.GraphicsDevice,System.IO.Stream,SixLabors.ImageSharp.Configuration)">
             <summary>
             Creates a Texture2D from a stream, supported formats bmp, gif, jpg, png, tga (only for simple textures).
             </summary>
@@ -6060,7 +6182,7 @@
         </member>
         <member name="M:Microsoft.Xna.Framework.Graphics.Texture2D.SaveAsJpeg(System.IO.Stream,System.Int32,System.Int32)">
             <summary>
-            Converts the texture to a JPG image
+            Saves the texture as a JPEG image.
             </summary>
             <param name="stream">Destination for the image</param>
             <param name="width"></param>
@@ -6068,7 +6190,7 @@
         </member>
         <member name="M:Microsoft.Xna.Framework.Graphics.Texture2D.SaveAsPng(System.IO.Stream,System.Int32,System.Int32)">
             <summary>
-            Converts the texture to a PNG image
+            Saves the texture as a PNG image.
             </summary>
             <param name="stream">Destination for the image</param>
             <param name="width"></param>
@@ -16169,104 +16291,6 @@
             <param name="value1">Source <see cref="T:Microsoft.Xna.Framework.Vector4"/> on the left of the div sign.</param>
             <param name="divider">Divisor scalar on the right of the div sign.</param>
             <returns>The result of dividing a vector by a scalar.</returns>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Content.ContentManager.LoadedAssets">
-            <summary>
-            Virtual property to allow a derived ContentManager to have it's assets reloaded
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Content.ExternalReferenceReader">
-            <summary>
-            External reference reader, provided for compatibility with XNA Framework built content
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.#ctor">
-            <summary>
-            Creates an instance of the attribute.
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.CollectionItemName">
-            <summary>
-            Returns the overriden XML element name or the default "Item".
-            </summary>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerAttribute.HasCollectionItemName">
-            <summary>
-            Returns true if the default CollectionItemName value was overridden.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Content.ContentSerializerCollectionItemNameAttribute">
-            <summary>
-            This is used to specify the XML element name to use for each item in a collection.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerCollectionItemNameAttribute.#ctor(System.String)">
-            <summary>
-            Creates an instance of the attribute.
-            </summary>
-            <param name="collectionItemName">The XML element name to use for each item in the collection.</param>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerCollectionItemNameAttribute.CollectionItemName">
-            <summary>
-            The XML element name to use for each item in the collection.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Content.ContentSerializerRuntimeTypeAttribute">
-            <summary>
-            This is used to specify the type to use when deserializing this object at runtime.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerRuntimeTypeAttribute.#ctor(System.String)">
-            <summary>
-            Creates an instance of the attribute.
-            </summary>
-            <param name="runtimeType">The name of the type to use at runtime.</param>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerRuntimeTypeAttribute.RuntimeType">
-            <summary>
-            The name of the type to use at runtime.
-            </summary>
-        </member>
-        <member name="T:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute">
-            <summary>
-            This is used to specify the version when deserializing this object at runtime.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.#ctor(System.Int32)">
-            <summary>
-            Creates an instance of the attribute.
-            </summary>
-            <param name="typeVersion">The version passed to the type at runtime.</param>
-        </member>
-        <member name="P:Microsoft.Xna.Framework.Content.ContentSerializerTypeVersionAttribute.TypeVersion">
-            <summary>
-            The version passed to the type at runtime.
-            </summary>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.PrepareType(System.String)">
-            <summary>
-            Removes Version, Culture and PublicKeyToken from a type string.
-            </summary>
-            <remarks>
-            Supports multiple generic types (e.g. Dictionary&lt;TKey,TValue&gt;) and nested generic types (e.g. List&lt;List&lt;int&gt;&gt;).
-            </remarks> 
-            <param name="type">
-            A <see cref="T:System.String"/>
-            </param>
-            <returns>
-            A <see cref="T:System.String"/>
-            </returns>
-        </member>
-        <member name="M:Microsoft.Xna.Framework.Content.ContentTypeReaderManager.AddTypeCreator(System.String,System.Func{Microsoft.Xna.Framework.Content.ContentTypeReader})">
-            <summary>
-            Adds the type creator.
-            </summary>
-            <param name='typeString'>
-            Type string.
-            </param>
-            <param name='createFunction'>
-            Create function.
-            </param>
         </member>
         <member name="T:Microsoft.Xna.Framework.GraphicsDeviceInformation">
             <summary>
